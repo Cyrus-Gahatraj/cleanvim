@@ -29,3 +29,9 @@ vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, { desc = "Help" })
 vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
 vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format, { desc = "Code Format" })
 
+-- Git
+vim.keymap.set("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", { desc = "Git Preview" })
+vim.keymap.set("n", "<leader>gd", ":Gdiffsplit<CR>", { desc = "Git diff" })
+vim.keymap.set("n", "<leader>gb", ":Git blame<CR>", { desc = "Git blame" })
+vim.keymap.set("n", "<leader>gw", ":Gwrite<CR>", { desc = "Git add this" })
+
