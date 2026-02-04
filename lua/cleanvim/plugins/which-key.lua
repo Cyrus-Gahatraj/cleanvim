@@ -12,8 +12,13 @@ return {
   },
   config = function()
 	  require("which-key").setup({
-		  delay = 500,
 		  preset = "helix",
+		  plugins = {
+			  presets = {
+				  motions = false,
+				  text_objects = false
+			  }
+		  }
 	  })
   end,
 }

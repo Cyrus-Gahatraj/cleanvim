@@ -7,18 +7,18 @@ return {
 			highlight_duration = 500,
 
 			mappings = {
-				add = 'sa', -- Add surrounding in Normal and Visual modes
-				delete = 'sd', -- Delete surrounding
-				find = 'sf', -- Find surrounding (to the right)
-				find_left = 'sF', -- Find surrounding (to the left)
-				highlight = 'sh', -- Highlight surrounding
-				replace = 'sr', -- Replace surrounding
+				add = 'sa', -- add surrounding in normal and visual modes
+				delete = 'sd', -- delete surrounding
+				find = 'sf', -- find surrounding (to the right)
+				find_left = 'sf', -- find surrounding (to the left)
+				highlight = 'sh', -- highlight surrounding
+				replace = 'sr', -- replace surrounding
 
-				suffix_last = 'l', -- Suffix to search with "prev" method
-				suffix_next = 'n', -- Suffix to search with "next" method
+				suffix_last = 'l', -- suffix to search with "prev" method
+				suffix_next = 'n', -- suffix to search with "next" method
 			},
 
-			-- Number of lines within which surrounding is searched
+			-- number of lines within which surrounding is searched
 			n_lines = 20,
 
 			respect_selection_type = false,
@@ -27,6 +27,29 @@ return {
 
 			silent = false,
 		})
+
+		local wk = require("which-key")
+		local sr_map = {
+            mode = { "n", "v" },
+        }
+
+        local add_sr_suffix = function(suffix, name)
+            return {
+                { "s" .. suffix, group = "surround " .. name },
+                { "s" .. suffix .. "a", desc = "add " .. name .. " surround" },
+                { "s" .. suffix .. "d", desc = "delete " .. name .. " surround" },
+                { "s" .. suffix .. "r", desc = "replace " .. name .. " surround" },
+                { "s" .. suffix .. "f", desc = "find " .. name .. " surround right" },
+                { "s" .. suffix .. "F", desc = "find " .. name .. " surround left" },
+                { "s" .. suffix .. "h", desc = "highlight " .. name .. " surround" },
+            }
+        end
+
+        vim.list_extend(sr_map, add_sr_suffix("", ""))
+        vim.list_extend(sr_map, add_sr_suffix("n", "next"))
+        vim.list_extend(sr_map, add_sr_suffix("l", "last"))
+
+        wk.add(sr_map)
 	end
 }
 
