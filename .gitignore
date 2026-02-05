@@ -1,0 +1,6 @@
+# Ingore everything in the custom folder
+lua/cleanvim/custom/**/*
+
+!lua/cleanvim/custom/init.lua
+!lua/cleanvim/custom/plugins/plugin.lua
+
