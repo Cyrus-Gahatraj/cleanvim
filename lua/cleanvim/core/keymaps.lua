@@ -35,3 +35,6 @@ vim.keymap.set("n", "<leader>gd", ":Gdiffsplit<CR>", { desc = "Git diff" })
 vim.keymap.set("n", "<leader>gb", ":Git blame<CR>", { desc = "Git blame" })
 vim.keymap.set("n", "<leader>gw", ":Gwrite<CR>", { desc = "Git add this" })
 
+-- Oil 
+vim.keymap.set("n", "<leader>e", ":Oil<CR>", { desc = "Open Explorer" })
+
