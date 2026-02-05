@@ -28,28 +28,30 @@ return {
 			silent = false,
 		})
 
-		local wk = require("which-key")
-		local sr_map = {
-            mode = { "n", "v" },
-        }
+		local ok, wk = pcall(require, "which-key")
+		if ok then
+			local sr_map = {
+				mode = { "n", "v" },
+			}
 
-        local add_sr_suffix = function(suffix, name)
-            return {
-                { "s" .. suffix, group = "surround " .. name },
-                { "s" .. suffix .. "a", desc = "add " .. name .. " surround" },
-                { "s" .. suffix .. "d", desc = "delete " .. name .. " surround" },
-                { "s" .. suffix .. "r", desc = "replace " .. name .. " surround" },
-                { "s" .. suffix .. "f", desc = "find " .. name .. " surround right" },
-                { "s" .. suffix .. "F", desc = "find " .. name .. " surround left" },
-                { "s" .. suffix .. "h", desc = "highlight " .. name .. " surround" },
-            }
-        end
+			local add_sr_suffix = function(suffix, name)
+				return {
+					{ "s" .. suffix, group = "surround " .. name },
+					{ "s" .. suffix .. "a", desc = "add " .. name .. " surround" },
+					{ "s" .. suffix .. "d", desc = "delete " .. name .. " surround" },
+					{ "s" .. suffix .. "r", desc = "replace " .. name .. " surround" },
+					{ "s" .. suffix .. "f", desc = "find " .. name .. " surround right" },
+					{ "s" .. suffix .. "F", desc = "find " .. name .. " surround left" },
+					{ "s" .. suffix .. "h", desc = "highlight " .. name .. " surround" },
+				}
+			end
 
-        vim.list_extend(sr_map, add_sr_suffix("", ""))
-        vim.list_extend(sr_map, add_sr_suffix("n", "next"))
-        vim.list_extend(sr_map, add_sr_suffix("l", "last"))
+			vim.list_extend(sr_map, add_sr_suffix("", ""))
+			vim.list_extend(sr_map, add_sr_suffix("n", "next"))
+			vim.list_extend(sr_map, add_sr_suffix("l", "last"))
 
-        wk.add(sr_map)
+			wk.add(sr_map)
+		end
 	end
 }
 
