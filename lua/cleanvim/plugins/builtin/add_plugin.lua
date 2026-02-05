@@ -8,6 +8,7 @@ local state = {
 }
 
 local function create_floating_window(opts)
+  opts = opts or {}
   local columns = vim.o.columns
   local lines = vim.o.lines
 
@@ -45,8 +46,11 @@ local add_plugin = function()
 	if not vim.api.nvim_win_is_valid(state.floating.win) then
 		state.floating = create_floating_window { buf = state.floating.buf }
 		if vim.bo[state.floating.buf].buftype ~= "acwrite" then
-			require("oil").open(vim.fn.stdpath("config") .. "/lua/cleanvim/custom/plugins")
-			print("add custom plugins")
+			local ok, oil = pcall(require, "oil")
+			if ok then
+				oil.open(vim.fn.stdpath("config") .. "/lua/cleanvim/custom/plugins")
+				print("add custom plugins")
+			end
 		end
 	else
 		vim.api.nvim_win_hide(state.floating.win)
