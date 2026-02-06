@@ -1,5 +1,5 @@
 -- Defaults Settings
-require("defaults")
+require("cleanvim.defaults")
 
 -- Core Utils
 require("cleanvim.core")
@@ -11,7 +11,4 @@ require("cleanvim.lazy")
 require("cleanvim.ui")
 
 -- Custom Setting
-local ok, err = pcall(require, "cleanvim.custom")
-if not ok and err then
-	print("Error: " .. err)
-end
+pcall(require, "cleanvim.custom")
