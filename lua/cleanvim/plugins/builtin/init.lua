@@ -1,3 +1,3 @@
 return {
-	require("cleanvim.plugins.builtin.add_plugin"),
+	require("cleanvim.plugins.builtin.custom_add"),
 }
