@@ -1,6 +1,7 @@
 return {
 	'nvim-mini/mini.surround',
-	version = false,
+	version = false,	
+	dependencies = { "folke/which-key.nvim" },
 	config = function()
 		require("mini.surround").setup({
 			custom_surroundings = nil,
@@ -29,7 +30,7 @@ return {
 		})
 
 		local ok, wk = pcall(require, "which-key")
-		if ok then
+		if ok and wk.add then
 			local sr_map = {
 				mode = { "n", "v" },
 			}

@@ -1,5 +1,6 @@
 return {
 	'nvim-mini/mini.ai', version = false,
+	dependencies = { "folke/which-key.nvim" },
 	config = function()
 		require("mini.ai").setup({
 			custom_textobjects = nil,
@@ -27,7 +28,7 @@ return {
 		-- Adding to Which-key
 		local ok, wk = pcall(require, "which-key")
 
-		if ok then
+		if ok and wk.add then
 			local ai_map = {
 				mode = { "o", "v" },
 			}

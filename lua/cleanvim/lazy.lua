@@ -27,5 +27,14 @@ require("lazy").setup({
 		{ import = "cleanvim.plugins" },
 		{ import = "cleanvim.custom.plugins" },
 	},
+	checker = { enabled = false },
+	performance = {
+        rtp = {
+            reset = true,
+        },
+		disabled_plugins = {
+			"netrw",
+		}
+    },
 })
 

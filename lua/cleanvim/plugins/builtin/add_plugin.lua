@@ -64,8 +64,7 @@ vim.keymap.set("n", "<leader>ap", add_plugin, {
 
 local ok, wk = pcall(require, "which-key")
 
-if ok then
-	wk = require("which-key")
+if ok and wk.add then
 	wk.add({
 		{ "<leader>a", group = "Add stuffs" },
 	})
