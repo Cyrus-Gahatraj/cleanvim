@@ -28,6 +28,10 @@ require("lazy").setup({
 		{ import = "cleanvim.custom.plugins" },
 	},
 	checker = { enabled = false },
+	change_detection = {
+		enabled = true,
+		notify = true
+	},
 	performance = {
         rtp = {
             reset = true,
