@@ -1,5 +1,5 @@
 -- Defaults Settings
-require("cleanvim.defaults")
+require("cleanvim.config.defaults")
 
 -- Core Utils
 require("cleanvim.core")
