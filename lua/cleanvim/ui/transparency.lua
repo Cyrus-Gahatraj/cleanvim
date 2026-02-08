@@ -2,10 +2,13 @@ local M = {}
 
 local function apply_transparent()
 	local nvim_hl = {
-		"Normal", "NormalFloat", "FloatBorder", "Pmenu", "Terminal",
-		"EndOfBuffer", "FoldColumn", "Folded", "SignColumn", "NormalNC",
+		"Normal", "NormalFloat", "FloatBorder",
+		"Pmenu", "PmenuThumb", "PmenuSel", "PmenuSbar",
+		"Terminal",	"EndOfBuffer", "FoldColumn", "Folded", "SignColumn", "NormalNC",
 		"TelescopeBorder", "TelescopeNormal", "TelescopePromptBorder", "TelescopePromptTitle",
 		"WhichKeyFloat",
+		"BlinkCmpMenu", "BlinkCmpMenuBorder", "BlinkCmpScrollBarGutter",
+		"BlinkCmpDoc", "BlinkCmpDocBorder"
 	}
 	for _, hl in ipairs(nvim_hl) do
 		vim.api.nvim_set_hl(0, hl, { bg = "none" })
