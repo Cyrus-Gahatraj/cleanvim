@@ -3,16 +3,7 @@ local builtin = require('telescope.builtin')
 local actions = require('telescope.actions')
 local action_state = require('telescope.actions.state')
 
-local save_theme = function(theme)
-	local path = vim.fn.stdpath("config") .. "/lua/cleanvim/config/save_state/theme.lua"
-	local f = io.open(path, "w")
-	if f then
-		f:write(string.format('return "%s"', theme))
-		f:close()
-	else
-		print("Error: Could not open path " .. path)
-	end
-end
+local save = require("cleanvim.plugins.builtin.switchers.save_state")
 
 local apply_theme = function()
 	builtin.find_files({
@@ -25,7 +16,11 @@ local apply_theme = function()
 				local theme_name = vim.fn.fnamemodify(selection[1], ":r")
 				local ok, err = pcall(vim.cmd, "colorscheme " .. theme_name)
 				if ok then
-					save_theme(theme_name)
+					local path = vim.fn.stdpath("config") .. "/lua/cleanvim/config/save_state/theme.lua"
+					save({
+						path = path,
+						return_state = string.format('return "%s"', theme_name),
+					})
 				else
 					print("Error applying colorscheme: " .. err)
 				end
@@ -35,12 +30,9 @@ local apply_theme = function()
 	})
 end
 
-local apply = function()
-	apply_theme()
-end
 
-vim.keymap.set("n", "<leader>st", function()
-	apply()
+vim.keymap.set("n", "<leader>sth", function()
+	apply_theme()
 end, { desc = "Switch theme" })
 
 local ok, wk = pcall(require, "which-key")
