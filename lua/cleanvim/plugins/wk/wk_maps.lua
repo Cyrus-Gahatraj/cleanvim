@@ -42,9 +42,16 @@ M.setup = function()
 
 		-- Code
 		{ "<leader>c", group = "Code" },
+		{ "<leader>cs", group = "Symbols" },
 
 		-- Find
 		{ "<leader>f", group = "Find" },
+
+		-- Toggle
+		{ "<leader>t", group = "Toggle" },
+
+		-- Refactor
+		{ "<leader>r", group = "Refactor" },
 	}
 
 	-- mini ai
