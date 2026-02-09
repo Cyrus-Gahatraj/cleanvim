@@ -1,3 +1,5 @@
+local installed_linters = require("cleanvim.plugins.lsp.installed.linters")
+
 return {
 	"mfussenegger/nvim-lint",
 	event = {
@@ -6,11 +8,6 @@ return {
 	},
 	config = function()
 		local lint = require("lint")
-		lint.linters_by_ft = {
-			lua = { "selene" },
-			python = { "pylint" },
-			javascript = { "eslint_d" },
-			sh = { "shellcheck" },
-		}
+		lint.linters_by_ft = installed_linters
 	end,
 }

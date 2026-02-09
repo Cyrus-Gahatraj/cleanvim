@@ -8,6 +8,8 @@ local format_on_save = function(opts)
 	})
 end
 
+local installed_formatters = require("cleanvim.plugins.lsp.installed.formatters")
+
 return {
 	"stevearc/conform.nvim",
 	event = {
@@ -17,16 +19,7 @@ return {
 	config = function()
 		local conform = require("conform")
 		conform.setup({
-			formatters_by_ft = {
-				lua = { "stylua" },
-				rust = { "rustfmt" },
-				c = { "clang-format" },
-				python = { "isort", "black" },
-				javascript = { "prettierd" },
-				typescript = { "prettierd" },
-				go = { "gofumpt" },
-				sh = { "shfmt" },
-			},
+			formatters_by_ft = installed_formatters,
 		})
 
 		if vim.g.format_on_save then
