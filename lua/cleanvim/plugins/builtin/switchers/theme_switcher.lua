@@ -3,7 +3,7 @@ local builtin = require('telescope.builtin')
 local actions = require('telescope.actions')
 local action_state = require('telescope.actions.state')
 
-local save = require("cleanvim.plugins.builtin.switchers.save_state")
+local save = require("cleanvim.plugins.builtin.save_state")
 
 local apply_theme = function()
 	builtin.find_files({

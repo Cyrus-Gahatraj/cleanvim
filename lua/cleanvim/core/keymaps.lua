@@ -3,8 +3,8 @@ vim.keymap.set("n", "<leader>l", ":Lazy<CR>", { desc = "lazy plugin" })
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move line down" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move line up" })
 
-vim.keymap.set({"n", "v"}, "<leader>y", "\"+y", { desc = "Yank in +" })
-vim.keymap.set({"n", "v"}, "<leader>p", "\"_dP", { desc = "Paste in void" })
+vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { desc = "Yank in +" })
+vim.keymap.set({ "n", "v" }, "<leader>p", '"_dP', { desc = "Paste in void" })
 
 -- Center
 vim.keymap.set("n", "G", "Gzz")
@@ -25,7 +25,6 @@ vim.keymap.set("n", "<leader>rr", ":Telescope lsp_references<CR>", { desc = "Ref
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename Symbol" })
 vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, { desc = "Help" })
 vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
-vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format, { desc = "Code Format" })
 vim.keymap.set("n", "<leader>css", ":Telescope lsp_document_symbols<CR>", { desc = "Documents Symbols" })
 vim.keymap.set("n", "<leader>csw", ":Telescope lsp_workspace_symbols<CR>", { desc = "Workspace Symbols" })
 
@@ -37,6 +36,5 @@ vim.keymap.set("n", "<leader>gb", ":Git blame<CR>", { desc = "Git blame" })
 vim.keymap.set("n", "<leader>gB", ":Gitsigns toggle_current_line_blame<CR>", { desc = "Toggle blame" })
 vim.keymap.set("n", "<leader>gw", ":Gwrite<CR>", { desc = "Git add this" })
 
--- Oil 
+-- Oil
 vim.keymap.set("n", "<leader>e", ":Oil<CR>", { desc = "Open Explorer" })
-

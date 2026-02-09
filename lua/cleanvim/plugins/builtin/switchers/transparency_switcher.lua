@@ -1,6 +1,6 @@
 local M = {}
 
-local save = require("cleanvim.plugins.builtin.switchers.save_state")
+local save = require("cleanvim.plugins.builtin.save_state")
 
 local switch_transparency = function()
 	vim.g.transparency = not vim.g.transparency
