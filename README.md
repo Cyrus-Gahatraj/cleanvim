@@ -58,84 +58,87 @@ Cleanvim ships with some of the plugins
 
 #### Core & UX
 
-- lazy.nvim – Plugin manager
+- [lazy.nvim](https://github.com/folke/lazy.nvim) – Plugin manager
 
-- which-key.nvim – Keybinding discovery
+- [which-key.nvim](https://github.com/folke/which-key.nvim) – Keybinding discovery
 
-- undotree – Visual undo history
+- [undotree](https://github.com/jiaoshijie/undotree) - Visual undo history
 
-- oil.nvim – File explorer as a buffer
+- [oil.nvim](https://github.com/stevearc/oil.nvim) - File explorer as a buffer
 
-- blink.nvim – Autocomplete engine
+- [blink.nvim](https://github.com/Saghen/blink.cmp) - Autocomplete engine
 
 #### Editing (mini.nvim suite)
 
-- mini.ai – Text objects
+- [mini.ai](https://github.com/echasnovski/mini.ai) - Text objects
 
-- mini.comment – Commenting
+- [mini.comment](https://github.com/echasnovski/mini.comment) - Commenting
 
-- mini.pairs – Auto pairs
+- [mini.pairs](https://github.com/echasnovski/mini.pairs) - Auto pairs
 
-- mini.surround – Surround actions
+- [mini.surround](https://github.com/echasnovski/mini.surround) - Surround Action
 
-- mini.bracketed – Bracket-based navigation
+- [mini.bracketed](https://github.com/echasnovski/mini.bracketed) - Bracket-based navigation
 
-- mini.cmdline – Command-line enhancements
+- [mini.cmdline](https://github.com/echasnovski/mini.cmdline) - Command-line enhancements
 
-- mini.statusline – Minimal statusline
+- [mini.statusline](https://github.com/echasnovski/mini.statusline) - Minimal statusline
 
 #### Navigation & Search
 
-- telescope.nvim – Fuzzy finder
+- [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) - Fuzzy finder
 
 #### Git
 
-- gitsigns.nvim – Git hunks and signs
+- [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) - Git hunks and signs
 
-- vim-fugitive – Git integration
+- [vim-fugitive](https://github.com/tpope/vim-fugitive) - Giit integration
 
-- lazygit.nvim – LazyGit integration
+- [lazygit.nvim](https://github.com/kdheepak/lazygit.nvim) - LazyGit integration
 
 #### LSP & Tooling
 
-- nvim-lspconfig – LSP configuration
+- [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) - LSP configuration
 
-- mason.nvim – LSP/DAP/tool installer
+- [mason.nvim](https://github.com/williamboman/mason.nvim) - LSP/DAP/tool installer
 
-- none-ls.nvim – Formatters and linters
+- [mason-tool-installer](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim) - Automates installation of external binaries 
 
-- Treesitter
+- [conform.nvim](https://github.com/stevearc/conform.nvim) - Formatter
+ 
+- [nvim-lint](https://github.com/mfussenegger/nvim-lint) - Linter
 
+- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 
 #### Themes
 
 Built-in theme support with persistent selection:
 
-- Catppuccin
+- *Catppuccin*
 
-- Gruvbox
+- *Gruvbox*
 
-- Kanagawa
+- *Kanagawa*
 
-- Tokyonight
+- *Tokyonight*
 
-- Nord
+- *Nord*
 
-- Rose Pine
+- *Rose Pine*
 
-- Everforest
+- *Everforest*
 
-- Monokai Pro
+- *Monokai Pro*
 
-- Flexoki
+- *Flexoki*
 
-- Bamboo
+- *Bamboo*
 
-- Ethereal
+- *Ethereal*
 
-- Matteblack
+- *Matteblack*
 
-- Hackerman
+- *Hackerman*
 
 ## Customization
 
