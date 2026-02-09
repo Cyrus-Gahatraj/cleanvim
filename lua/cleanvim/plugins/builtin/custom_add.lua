@@ -62,9 +62,4 @@ vim.keymap.set("n", "<leader>ap", add_plugin, { desc = "Add plugin" })
 vim.api.nvim_create_user_command("AddTheme", add_theme, {})
 vim.keymap.set("n", "<leader>at", add_theme, { desc = "Add theme" })
 
-local ok, wk = pcall(require, "which-key")
-if ok and wk.add then
-    wk.add({ { "<leader>a", group = "Add stuffs" } })
-end
-
 return M

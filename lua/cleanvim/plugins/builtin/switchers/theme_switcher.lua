@@ -35,9 +35,4 @@ vim.keymap.set("n", "<leader>sth", function()
 	apply_theme()
 end, { desc = "Switch theme" })
 
-local ok, wk = pcall(require, "which-key")
-if ok and wk.add then
-    wk.add({ { "<leader>s", group = "Switch stuffs" } })
-end
-
 return M

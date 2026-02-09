@@ -16,9 +16,4 @@ vim.keymap.set("n", "<leader>str", function()
 	switch_transparency()
 end, { desc = "switch transparency" })
 
-local ok, wk = pcall(require, "which-key")
-if ok and wk.add then
-    wk.add({ { "<leader>s", group = "Switch stuffs" } })
-end
-
 return M
