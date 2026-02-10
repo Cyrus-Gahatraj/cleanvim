@@ -1,0 +1,10 @@
+-- LSP mappings
+vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", { desc = "Go to defination" })
+vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover documentation" })
+vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Diagnostic" })
+vim.keymap.set("n", "<leader>rr", "<cmd>Telescope lsp_references<CR>", { desc = "References list" })
+vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename Symbol" })
+vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, { desc = "Help" })
+vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
+vim.keymap.set("n", "<leader>css", "<cmd>Telescope lsp_document_symbols<CR>", { desc = "Documents Symbols" })
+vim.keymap.set("n", "<leader>csw", "<cmd>Telescope lsp_workspace_symbols<CR>", { desc = "Workspace Symbols" })
