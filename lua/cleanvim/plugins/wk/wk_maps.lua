@@ -58,6 +58,9 @@ M.setup = function()
 
 		-- Buffer
 		{ "<leader>b", group = "Buffer" },
+
+		-- Harpoon
+		{ "<leader>h", group = "Harpoon"},
 	}
 
 	-- mini ai
