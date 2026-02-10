@@ -2,7 +2,7 @@ local M = {}
 
 local save = require("cleanvim.plugins.builtin.save_state")
 
-local switch_transparency = function()
+local toggle_transparency = function()
 	vim.g.transparency = not vim.g.transparency
 	local path = vim.fn.stdpath("config") .. "/lua/cleanvim/config/save_state/transparency.lua"
 	save({
@@ -12,8 +12,8 @@ local switch_transparency = function()
 	print("Require a restart")
 end
 
-vim.keymap.set("n", "<leader>str", function()
-	switch_transparency()
+vim.keymap.set("n", "<leader>ttp", function()
+	toggle_transparency()
 end, { desc = "switch transparency" })
 
 return M
