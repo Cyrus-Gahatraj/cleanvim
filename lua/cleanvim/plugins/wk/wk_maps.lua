@@ -32,10 +32,10 @@ M.setup = function()
 		return
 	end
 
-	local mapping  = {
+	local mapping = {
 		-- Builtins
-        { "<leader>a", group = "Add stuffs" },
-        { "<leader>s", group = "Switch stuffs" },
+		{ "<leader>a", group = "Add stuffs" },
+		{ "<leader>s", group = "Switch stuffs" },
 
 		-- Git
 		{ "<leader>g", group = "Git" },
@@ -52,6 +52,12 @@ M.setup = function()
 
 		-- Refactor
 		{ "<leader>r", group = "Refactor" },
+
+		-- Tabs
+		{ "<leader><tab>", group = "Tabs" },
+
+		-- Buffer
+		{ "<leader>b", group = "Buffer" },
 	}
 
 	-- mini ai
