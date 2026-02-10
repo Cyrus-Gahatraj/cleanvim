@@ -12,8 +12,8 @@ local toggle_transparency = function()
 	print("Require a restart")
 end
 
-vim.keymap.set("n", "<leader>ttp", function()
+vim.keymap.set("n", "<leader>tiv", function()
 	toggle_transparency()
-end, { desc = "switch transparency" })
+end, { desc = "toggle invisibility" })
 
 return M
