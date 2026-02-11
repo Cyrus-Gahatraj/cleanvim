@@ -14,6 +14,7 @@ return {
 			require(deps .. "nvim-lspconfig"),
 			require(deps .. "mason"),
 			require(deps .. "mason-tool-installer"),
+			require(deps .. "fidget"),
 		},
 		config = function()
 			require("mason-lspconfig").setup({
