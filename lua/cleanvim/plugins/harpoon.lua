@@ -6,25 +6,17 @@ return {
         local harpoon = require("harpoon")
         harpoon:setup()
 
-        local conf = require("telescope.config").values
-        local function toggle_telescope(harpoon_files)
-            local file_paths = {}
-            for _, item in ipairs(harpoon_files.items) do
-                table.insert(file_paths, item.value)
-            end
-
-            require("telescope.pickers").new({}, {
-                prompt_title = "Harpoon Marks",
-                finder = require("telescope.finders").new_table({
-                    results = file_paths,
-                }),
-                previewer = conf.file_previewer({}),
-                sorter = conf.generic_sorter({}),
-            }):find()
-        end
-
         vim.keymap.set("n", "<leader>ha", function() harpoon:list():add() end, { desc = "Harpoon add file" })
-        vim.keymap.set("n", "<C-e>", function() toggle_telescope(harpoon:list()) end, { desc = "Harpoon Telescope Menu" })
+
+        -- Enable if you want harpoon menu with telescope
+        -- local has_telescope, telescope = pcall(require, "telescope")
+        -- if has_telescope then
+        --     telescope.load_extension('harpoon')
+        --     vim.keymap.set("n", "<C-e>", telescope.extensions.harpoon.marks, { desc = "Harpoon Telescope Menu" })
+        -- else
+        --     vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "Harpoon Menu" })
+        -- end
+        vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "Harpoon Menu" })
 
         -- Navigate files
         for i = 1, 5 do
