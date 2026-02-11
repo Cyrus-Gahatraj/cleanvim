@@ -25,4 +25,5 @@ vim.opt.splitbelow = true
 
 vim.opt.shortmess:append("WcatI")
 vim.opt.showmode = false
-
+vim.opt.winbar = ""
+vim.opt.showtabline = 0
