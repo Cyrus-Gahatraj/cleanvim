@@ -2,6 +2,15 @@
 
 A modular, minimal, and transparent Neovim distribution built for speed and clarity.
 
+<div align="center">
+  <img src="./assets/hero_shot.png" width="850">
+</div>
+
+## Prerequisites
+
+- **Neovim 0.11+**
+- **A Nerd Font** (e.g., JetBrainMono Nerd Font) for icons.
+
 ---
 
 ## Directory Structure
@@ -60,13 +69,15 @@ Cleanvim ships with some of the plugins
 
 - [lazy.nvim](https://github.com/folke/lazy.nvim) – Plugin manager
 
-- [which-key.nvim](https://github.com/folke/which-key.nvim) – Keybinding discovery
+- [which-key](https://github.com/folke/which-key.nvim) – Keybinding discovery
 
 - [undotree](https://github.com/jiaoshijie/undotree) - Visual undo history
 
-- [oil.nvim](https://github.com/stevearc/oil.nvim) - File explorer as a buffer
+- [oil](https://github.com/stevearc/oil.nvim) - File explorer as a buffer
 
-- [blink.nvim](https://github.com/Saghen/blink.cmp) - Autocomplete engine
+- [blink.cmp](https://github.com/Saghen/blink.cmp) - Autocomplete engine
+
+- [lualine](https://github.com/nvim-lualine/lualine.nvim) - Statusline 
 
 #### Editing (mini.nvim suite)
 
@@ -81,8 +92,6 @@ Cleanvim ships with some of the plugins
 - [mini.bracketed](https://github.com/echasnovski/mini.bracketed) - Bracket-based navigation
 
 - [mini.cmdline](https://github.com/echasnovski/mini.cmdline) - Command-line enhancements
-
-- [mini.statusline](https://github.com/echasnovski/mini.statusline) - Minimal statusline
 
 #### Navigation & Search
 
@@ -139,6 +148,8 @@ Built-in theme support with persistent selection:
 - *Matteblack*
 
 - *Hackerman*
+
+--- 
 
 ## Customization
 
