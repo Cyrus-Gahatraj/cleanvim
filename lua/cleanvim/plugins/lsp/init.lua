@@ -23,6 +23,7 @@ return {
 					end,
 				},
 			})
+            require("cleanvim.plugins.lsp.keymaps")
 		end,
 	},
 }
