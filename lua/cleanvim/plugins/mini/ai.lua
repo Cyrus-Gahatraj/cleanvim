@@ -1,6 +1,7 @@
 return {
 	'nvim-mini/mini.ai', version = false,
 	dependencies = { "folke/which-key.nvim" },
+    event = "VeryLazy",
 	config = function()
 		require("mini.ai").setup({
 			custom_textobjects = nil,

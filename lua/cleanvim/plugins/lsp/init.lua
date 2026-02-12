@@ -10,6 +10,7 @@ return {
 	-- main LSP
 	{
 		"mason-org/mason-lspconfig.nvim",
+        event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			require(deps .. "nvim-lspconfig"),
 			require(deps .. "mason"),

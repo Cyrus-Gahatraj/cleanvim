@@ -18,7 +18,7 @@ vim.opt.undofile = true
 
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
-vim.opt.updatetime = 300
+vim.opt.updatetime = 50
 
 vim.opt.splitright = true
 vim.opt.splitbelow = true
