@@ -4,6 +4,13 @@ M.setup = function()
 	local view_type = vim.g.view_diagnostic
 	local severity = vim.diagnostic.severity
 
+    if view_type == "none" then
+        vim.diagnostic.enable(false)
+        return
+    else
+        vim.diagnostic.enable()
+    end
+
 	local config = {
 		virtual_text = (view_type == "text-and-sign" or view_type == "only-text") and {
 			prefix = '●',

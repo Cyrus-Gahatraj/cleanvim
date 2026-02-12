@@ -4,4 +4,5 @@ return {
 	theme = require(state .. "theme"),
 	transparency = require(state .. "transparency"),
 	format_on_save = require(state .. "format_on_save"),
+    view_diagnostic = require(state .. "view_diagnostic"),
 }
