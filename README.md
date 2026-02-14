@@ -1,6 +1,7 @@
 # Cleanvim
 
-A modular, minimal, and transparent Neovim distribution built for speed and clarity.
+A modular, minimal, and transparent Neovim distribution built for clarity, explicit structure and predictable behavior.
+It favors clean architecture over hidden abstraction and remains fast through lazy-loading.
 
 <div align="center">
   <img src="./assets/hero_shot.png" width="850">
@@ -9,7 +10,7 @@ A modular, minimal, and transparent Neovim distribution built for speed and clar
 ## Prerequisites
 
 - **Neovim 0.11+**
-- **A Nerd Font** (e.g., JetBrainMono Nerd Font) for icons.
+- **A Nerd Font** (e.g., JetBrainsMono Nerd Font) for icons.
 
 ---
 
@@ -39,6 +40,16 @@ A modular, minimal, and transparent Neovim distribution built for speed and clar
 * **`config/save_state/`** – persisted state 
 
 ---
+
+## Editor Control
+
+Cleanvim provides built-in control for extending and modifying editor behavior without the need of editing core file.
+
+| Action | Purpose                                                                            |
+| ------ | ---------------------------------------------------------------------------------- |
+| Add    | Extend functionality (themes, plugins, formatter, linter)                          |
+| Switch | Change active style (theme, diagnostic style)                                      |
+| Toggle | Enable or disable runtime behavior (invisibility, format-on-save, inline comments) |
 
 ## Installation
 
@@ -101,7 +112,7 @@ Cleanvim ships with some of the plugins
 
 - [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) - Git hunks and signs
 
-- [vim-fugitive](https://github.com/tpope/vim-fugitive) - Giit integration
+- [vim-fugitive](https://github.com/tpope/vim-fugitive) - Git integration
 
 - [lazygit.nvim](https://github.com/kdheepak/lazygit.nvim) - LazyGit integration
 
@@ -147,7 +158,7 @@ Built-in theme support with persistent selection:
 
 - *Matteblack*
 
-- *Hackerman*
+- *Cyberdream*
 
 --- 
 
