@@ -15,6 +15,9 @@ local toggle_term = function()
 			state.floating.buf = vim.api.nvim_get_current_buf()
 			vim.api.nvim_buf_set_name(state.floating.buf, "term://cleanvim/float")
 		end
+
+        -- Directly in insert mode
+        vim.cmd("startinsert")
 	end)
 end
 
