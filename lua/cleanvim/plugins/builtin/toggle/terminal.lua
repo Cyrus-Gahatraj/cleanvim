@@ -12,9 +12,13 @@ local toggle_term = function()
 		state.floating = create_floating_window({ buf = state.floating.buf })
 		if vim.bo[state.floating.buf].buftype ~= "terminal" then
 			vim.cmd.terminal()
-			state.floating.buf = vim.api.nvim_get_current_buf()
-			vim.api.nvim_buf_set_name(state.floating.buf, "term://cleanvim/float")
-		end
+			local term_buf = vim.api.nvim_get_current_buf()
+            vim.bo[term_buf].buflisted = false
+            vim.bo[term_buf].bufhidden = "hide"
+            vim.bo[term_buf].swapfile = false
+
+            vim.api.nvim_buf_set_name(term_buf, "term://cleanvim/float")
+        end
 
         -- Directly in insert mode
         vim.cmd("startinsert")
@@ -31,5 +35,6 @@ vim.keymap.set("t", "<ESC>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- Another option for escaping terminal
 -- vim.keymap.set("t", "<ESC><ESC>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+
 
 return M
