@@ -61,6 +61,9 @@ M.setup = function()
 
 		-- Harpoon
 		{ "<leader>h", group = "Harpoon"},
+
+        -- Trouble
+        { "<leader>x", group = "Trouble" },
 	}
 
 	-- mini ai
