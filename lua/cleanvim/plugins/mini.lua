@@ -4,7 +4,6 @@ return {
 	require(mini .. "ai"),
 	require(mini .. "surround"),
 	require(mini .. "pairs"),
-	require(mini .. "comment"),
 	require(mini .. "bracketed"),
 	require(mini .. "cmdline"),
 }
