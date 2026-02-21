@@ -4,9 +4,9 @@ local builtin = require('telescope.builtin')
 local actions = require('telescope.actions')
 local action_state = require('telescope.actions.state')
 
-local save = require("cleanvim.plugins.builtin.save_state")
-
 local apply_theme = function()
+
+    local save = require("cleanvim.plugins.builtin.save_state")
     local current_theme = vim.g.cleanvim_theme
 
     local set_theme = function(opts)

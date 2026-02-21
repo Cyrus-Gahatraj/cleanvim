@@ -1,8 +1,8 @@
 local M = {}
 
-local save = require("cleanvim.plugins.builtin.save_state")
-
 local toggle_transparency = function()
+
+    local save = require("cleanvim.plugins.builtin.save_state")
 	vim.g.transparency = not vim.g.transparency
 	local path = vim.fn.stdpath("config") .. "/lua/cleanvim/config/save_state/transparency.lua"
 	save({

@@ -5,9 +5,8 @@ local conf = require("telescope.config").values
 local actions = require('telescope.actions')
 local action_state = require('telescope.actions.state')
 
-local save = require("cleanvim.plugins.builtin.save_state")
-
 local apply_diagnostic = function(opts)
+    local save = require("cleanvim.plugins.builtin.save_state")
     pickers.new({
         finder = finders.new_table {
             results = { "text-and-sign", "only-text", "only-sign", "none" }
