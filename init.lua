@@ -10,5 +10,3 @@ require("cleanvim.lazy")
 -- UI
 require("cleanvim.ui")
 
--- Custom Setting
-pcall(require, "cleanvim.custom")

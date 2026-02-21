@@ -31,7 +31,7 @@ end
 
 local add_plugin = function()
 	add_stuff({
-		path = { "lua", "cleanvim", "custom", "plugins" },
+		path = { "lua", "cleanvim", "plugins", "custom" },
 		desc = "Add custom plugins",
 	}, plugins)
 end
