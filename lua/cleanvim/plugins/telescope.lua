@@ -23,6 +23,26 @@ return {
                         ["<C-h>"] = "which_key",
                     },
                 },
+                file_ignore_patterns = {
+                    "node_modules/.*",
+                    ".git/.*",
+                    "dist/.*",
+                    "build/.*",
+                    "coverage/.*",
+                    ".next/.*",
+                    ".cache/.*",
+                    "__pycache__/.*",
+                    "venv/.*",
+                    ".venv/.*",
+                    "target/.*",
+                    "*.o",
+                    "*.so",
+                },
+            },
+            pickers = {
+                find_files = {
+                    hidden = true,
+                }
             },
             extensions = {
                 fzf = {}
@@ -32,3 +52,4 @@ return {
         telescope.load_extension('fzf')
     end,
 }
+
