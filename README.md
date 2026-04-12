@@ -187,6 +187,7 @@ Or just use the keymap **\<leader\>ap**
 * Selected theme is persisted automatically
 * Themes live in `plugins/themes/`
 * User theme can be added with **\<leader\>at**
+* Snippets can be added with **\<leader\>as**
 
 ---
 

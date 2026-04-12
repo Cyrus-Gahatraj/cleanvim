@@ -10,6 +10,7 @@ local plugins = fm.register("plugins")
 local themes = fm.register("themes")
 local formatter = fm.register("formatter")
 local linter = fm.register("linter")
+local snippet = fm.register("snippet")
 
 local add_stuff = function(opts, state)
 	fm.toggle(state, function()
@@ -57,6 +58,13 @@ local add_linter = function()
 	}, linter)
 end
 
+local add_snippet = function()
+	add_stuff({
+		path = { "snippets" },
+		desc = "Add snippets",
+	}, snippet)
+end
+
 vim.api.nvim_create_user_command("AddPlugin", add_plugin, {})
 vim.keymap.set("n", "<leader>ap", add_plugin, { desc = "Add plugin" })
 
@@ -68,5 +76,8 @@ vim.keymap.set("n", "<leader>af", add_formatter, { desc = "Add formatter" })
 
 vim.api.nvim_create_user_command("AddLinter", add_linter, {})
 vim.keymap.set("n", "<leader>al", add_linter, { desc = "Add linter" })
+
+vim.api.nvim_create_user_command("AddSnippet", add_snippet, {})
+vim.keymap.set("n", "<leader>as", add_snippet, { desc = "Add snippet" })
 
 return M

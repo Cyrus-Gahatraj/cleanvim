@@ -64,6 +64,9 @@ M.setup = function()
 
         -- Trouble
         { "<leader>x", group = "Trouble" },
+
+        -- Snippets
+        { "<leader>as", desc = "Add snippet" },
 	}
 
 	-- mini ai
