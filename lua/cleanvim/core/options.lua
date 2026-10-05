@@ -11,6 +11,7 @@ vim.opt.autoindent = true
 vim.opt.smartindent = true
 vim.opt.wrap = false
 vim.opt.ignorecase = true
+vim.opt.mouse = ""
 
 vim.opt.swapfile = false
 vim.opt.backup = false
