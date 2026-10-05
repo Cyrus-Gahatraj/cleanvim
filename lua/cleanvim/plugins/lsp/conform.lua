@@ -1,13 +1,3 @@
-local format_on_save = function(opts)
-	opts.setup({
-		format_on_save = {
-			lsp_format = "fallback",
-			async = false,
-			timeout_ms = 500,
-		},
-	})
-end
-
 local installed_formatters = require("cleanvim.plugins.lsp.installed.formatters")
 
 return {
@@ -20,11 +10,13 @@ return {
 		local conform = require("conform")
 		conform.setup({
 			formatters_by_ft = installed_formatters,
+			-- checked on every save so <leader>tfs applies immediately
+			format_on_save = function()
+				if vim.g.format_on_save then
+					return { lsp_format = "fallback", timeout_ms = 500 }
+				end
+			end,
 		})
-
-		if vim.g.format_on_save then
-			format_on_save(conform)
-		end
 
 		vim.keymap.set("n", "<leader>cf", function()
 			conform.format({

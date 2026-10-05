@@ -16,15 +16,16 @@ local function apply_transparent()
 end
 
 M.setup = function()
-	if not vim.g.transparency then
-		return
-	end
 	vim.api.nvim_create_autocmd("ColorScheme", {
 		callback = function()
-			apply_transparent()
+			if vim.g.transparency then
+				apply_transparent()
+			end
 		end,
 	})
-	apply_transparent()
+	if vim.g.transparency then
+		apply_transparent()
+	end
 end
 
 return M

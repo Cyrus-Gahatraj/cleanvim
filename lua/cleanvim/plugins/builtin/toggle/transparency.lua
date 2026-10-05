@@ -4,7 +4,8 @@ local toggle_transparency = function()
 
 	vim.g.transparency = not vim.g.transparency
 	require("cleanvim.config.state").set("transparency", vim.g.transparency)
-	print("Require a restart")
+	-- reloading the colorscheme re-applies (or drops) transparency
+	vim.cmd.colorscheme(vim.g.colors_name)
 end
 
 vim.keymap.set("n", "<leader>tiv", function()

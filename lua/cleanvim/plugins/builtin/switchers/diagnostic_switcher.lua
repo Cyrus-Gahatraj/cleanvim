@@ -16,8 +16,9 @@ local apply_diagnostic = function(opts)
                 actions.close(bufnr)
                 local selection = action_state.get_selected_entry()
                 local diagnostic = selection[1]
+                vim.g.view_diagnostic = diagnostic
                 require("cleanvim.config.state").set("view_diagnostic", diagnostic)
-                print("Require a restart")
+                require("cleanvim.ui.diagnostic").setup()
             end)
             return true
         end,
