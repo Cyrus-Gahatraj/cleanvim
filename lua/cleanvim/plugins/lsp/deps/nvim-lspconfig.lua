@@ -7,11 +7,6 @@ return {
 			callback = function(event)
 				local client = vim.lsp.get_client_by_id(event.data.client_id)
 
-				if client then
-					client.server_capabilities.documentFormattingProvider = false
-					client.server_capabilities.documentRangeFormattingProvider = false
-				end
-
 				-- 1. Setup Highlight Logic
 				if client and client:supports_method("textDocument/documentHighlight", event.buf) then
 					local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
