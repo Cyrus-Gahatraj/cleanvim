@@ -3,9 +3,19 @@ return {
     config = function()
         require("mason-tool-installer").setup({
             ensure_installed = {
+                -- language servers (light ones; add more with :Mason)
+                "lua-language-server",
+                "bash-language-server",
+                "json-lsp",
+                "yaml-language-server",
+                "taplo",
+                "pyright",
+                "typescript-language-server",
+                "marksman",
+
+                -- formatters / linters
                 "stylua",
                 "selene",
-                "rustfmt",
                 "clang-format",
                 "prettierd",
                 "eslint_d",
@@ -13,7 +23,6 @@ return {
                 "isort",
                 "shfmt",
                 "shellcheck",
-                "marksman",
                 "typos",
             },
             auto_update = true,
