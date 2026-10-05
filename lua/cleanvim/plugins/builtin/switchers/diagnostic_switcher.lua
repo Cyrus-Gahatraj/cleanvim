@@ -1,11 +1,11 @@
 local M = {}
-local pickers = require("telescope.pickers")
-local finders = require("telescope.finders")
-local conf = require("telescope.config").values
-local actions = require('telescope.actions')
-local action_state = require('telescope.actions.state')
 
 local apply_diagnostic = function(opts)
+    local pickers = require("telescope.pickers")
+    local finders = require("telescope.finders")
+    local conf = require("telescope.config").values
+    local actions = require('telescope.actions')
+    local action_state = require('telescope.actions.state')
     pickers.new({
         finder = finders.new_table {
             results = { "text-and-sign", "only-text", "only-sign", "none" }

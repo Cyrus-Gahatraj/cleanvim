@@ -1,8 +1,4 @@
 local M = {}
-local themes = require("telescope.themes")
-local builtin = require('telescope.builtin')
-local actions = require('telescope.actions')
-local action_state = require('telescope.actions.state')
 
 local theme_map = {
     ["catppuccin"] = "catppuccin",
@@ -30,6 +26,10 @@ local theme_map = {
 }
 
 local apply_theme = function()
+    local themes = require("telescope.themes")
+    local builtin = require('telescope.builtin')
+    local actions = require('telescope.actions')
+    local action_state = require('telescope.actions.state')
 
     local current_theme = vim.g.cleanvim_theme or "catppuccin"
 

@@ -1,9 +1,7 @@
 return {
   "jiaoshijie/undotree",
   opts = {},
-   config = function()
-	  vim.keymap.set("n", "<leader>u", require('undotree').toggle, {
-		  desc = "Undo tree"
-	  })
-  end
+  keys = {
+	  { "<leader>u", function() require("undotree").toggle() end, desc = "Undo tree" },
+  },
 }
