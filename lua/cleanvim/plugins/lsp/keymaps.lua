@@ -11,8 +11,8 @@ else
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
     vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { desc = "Go to type definition" })
     vim.keymap.set("n", "<leader>rr", vim.lsp.buf.references, { desc = "References list" })
-    vim.keymap.set("n", "<leader>csd", vim.lsp.buf.document_symbols, { desc = "Document symbols" })
-    vim.keymap.set("n", "<leader>csw", vim.lsp.buf.workspace_symbols, { desc = "Workspace symbols" })
+    vim.keymap.set("n", "<leader>csd", vim.lsp.buf.document_symbol, { desc = "Document symbols" })
+    vim.keymap.set("n", "<leader>csw", vim.lsp.buf.workspace_symbol, { desc = "Workspace symbols" })
 end
 
 -- Common LSP Keymaps
