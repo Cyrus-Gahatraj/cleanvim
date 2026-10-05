@@ -63,6 +63,9 @@ M.setup = function()
         -- Trouble
         { "<leader>x", group = "Trouble" },
 
+        -- Debug
+        { "<leader>D", group = "Debug" },
+
         -- Snippets
         { "<leader>as", desc = "Add snippet" },
     }
