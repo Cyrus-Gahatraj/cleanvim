@@ -2,13 +2,8 @@ local M = {}
 
 local toggle_formatting_on_save = function()
 
-    local save = require("cleanvim.plugins.builtin.save_state")
 	vim.g.format_on_save = not vim.g.format_on_save
-	local path = vim.fn.stdpath("config") .. "/lua/cleanvim/config/save_state/format_on_save.lua"
-	save({
-		path = path,
-		return_state = string.format("return %s", vim.g.format_on_save),
-	})
+	require("cleanvim.config.state").set("format_on_save", vim.g.format_on_save)
 	print("Restart require")
 end
 

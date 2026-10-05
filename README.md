@@ -37,7 +37,7 @@ It favors clean architecture over hidden abstraction and remains fast through la
 * **`plugins/`** – default plugins 
 * **`ui/`** – appearance-related configuration
 * **`custom/`** – user playground
-* **`config/save_state/`** – persisted state 
+* **`config/state.lua`** – persisted state (stored in `stdpath("state")/cleanvim.json`)
 
 ---
 

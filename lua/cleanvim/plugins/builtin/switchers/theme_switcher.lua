@@ -31,7 +31,6 @@ local theme_map = {
 
 local apply_theme = function()
 
-    local save = require("cleanvim.plugins.builtin.save_state")
     local current_theme = vim.g.cleanvim_theme or "catppuccin"
 
     local set_theme = function(opts)
@@ -44,11 +43,7 @@ local apply_theme = function()
         vim.g.cleanvim_theme = colorscheme
         local ok, err = pcall(vim.cmd, "colorscheme " .. colorscheme)
         if ok and opts.save then
-            local path = vim.fn.stdpath("config") .. "/lua/cleanvim/config/save_state/theme.lua"
-            save({
-                path = path,
-                return_state = string.format('return "%s"', colorscheme),
-            })
+            require("cleanvim.config.state").set("theme", colorscheme)
         elseif not ok then
             pcall(vim.cmd, "colorscheme " .. current_theme)
             print("Error applying " .. colorscheme .. ": " .. (err or "unknown"))
