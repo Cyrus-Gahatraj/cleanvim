@@ -7,6 +7,8 @@ return {
         keymap = {
             preset = "default",
         },
+        -- mini.cmdline owns the cmdline: <Tab> completes, <C-y> accepts
+        cmdline = { enabled = false },
         appearance = {
             nerd_font_variant = "mono",
         },
