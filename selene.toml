@@ -1,0 +1,7 @@
+std = "vim"
+
+[lints]
+# lazy.nvim specs are mixed tables by design
+mixed_table = "allow"
+# conflicts with stylua collapse_simple_statement
+multiple_statements = "allow"
