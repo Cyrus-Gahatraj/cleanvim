@@ -18,13 +18,8 @@ return {
 			require(deps .. "fidget"),
 		},
 		config = function()
-			require("mason-lspconfig").setup({
-				handlers = {
-					function(server_name)
-						vim.lsp.enable(server_name)
-					end,
-				},
-			})
+			-- v2 auto-enables installed servers via vim.lsp.enable
+			require("mason-lspconfig").setup()
             require("cleanvim.plugins.lsp.keymaps")
 		end,
 	},
