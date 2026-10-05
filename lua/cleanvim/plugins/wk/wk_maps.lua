@@ -74,7 +74,6 @@ M.setup = function()
 		mode = { "o", "v" },
 	}
 
-	vim.list_extend(ai_mapping, { mode = "o", "v" })
 	vim.list_extend(ai_mapping, add_ai_group("a", "around"))
 	vim.list_extend(ai_mapping, add_ai_group("i", "inside"))
 	vim.list_extend(ai_mapping, add_ai_group("an", "around next"))
