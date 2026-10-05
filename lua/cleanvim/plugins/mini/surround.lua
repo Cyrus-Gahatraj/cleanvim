@@ -12,7 +12,7 @@ return {
 				add = 'sa', -- add surrounding in normal and visual modes
 				delete = 'sd', -- delete surrounding
 				find = 'sf', -- find surrounding (to the right)
-				find_left = 'sf', -- find surrounding (to the left)
+				find_left = 'sF', -- find surrounding (to the left)
 				highlight = 'sh', -- highlight surrounding
 				replace = 'sr', -- replace surrounding
 
