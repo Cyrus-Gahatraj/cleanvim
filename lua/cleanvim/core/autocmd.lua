@@ -7,6 +7,8 @@ vim.api.nvim_create_autocmd("CmdlineEnter", {
         if vim.wo.relativenumber then
             vim.b.restorable_relativenumber = true
             vim.wo.relativenumber = false
+            -- refresh lualine first so the forced redraw doesn't paint a stale NORMAL
+            pcall(function() require("lualine").refresh() end)
             vim.cmd("redraw")
         end
     end,
