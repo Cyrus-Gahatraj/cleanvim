@@ -18,6 +18,8 @@ local toggle_term = function()
             vim.bo[term_buf].swapfile = false
 
             vim.api.nvim_buf_set_name(term_buf, "term://cleanvim/float")
+            -- Exit terminal mode through <esc> key (only here, so TUIs in other terminals keep <esc>)
+            vim.keymap.set("t", "<ESC>", "<C-\\><C-n>", { buffer = term_buf, desc = "Exit terminal mode" })
         end
 
         -- Directly in insert mode
@@ -29,12 +31,5 @@ vim.api.nvim_create_user_command("ToggleTerm", toggle_term, {})
 vim.keymap.set("n", "<leader>tt", function()
 	toggle_term()
 end, { desc = "Toggle terminal" })
-
--- Exit terminal mode through <esc> key
-vim.keymap.set("t", "<ESC>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
-
--- Another option for escaping terminal
--- vim.keymap.set("t", "<ESC><ESC>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
-
 
 return M
