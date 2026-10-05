@@ -26,4 +26,3 @@ vim.keymap.set("n", "<leader>bd", "<cmd>bp|bd #<CR>", { desc = "Delete buffer" }
 vim.keymap.set("n", "<leader>bn", "<cmd>bnext<CR>", { desc = "Next buffer" })
 vim.keymap.set("n", "<leader>bp", "<cmd>bprevious<CR>", { desc = "Previous buffer" })
 vim.keymap.set("n", "<leader>br", "<cmd>e #<CR>", { desc = "Reopen last buffer" })
-

@@ -5,9 +5,9 @@ return {
             notification = {
                 window = {
                     winblend = 0,
-                    border = 'none',
+                    border = "none",
                 },
             },
         })
-    end
+    end,
 }

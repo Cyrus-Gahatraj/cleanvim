@@ -1,8 +1,7 @@
 local M = {}
 
-local create_floating_window = require(
-	"cleanvim.plugins.builtin.floatwindow"
-).create_floating_window
+local create_floating_window =
+    require("cleanvim.plugins.builtin.floatwindow").create_floating_window
 
 local fm = require("cleanvim.plugins.builtin.floatmanager")
 
@@ -13,56 +12,53 @@ local linter = fm.register("linter")
 local snippet = fm.register("snippet")
 
 local add_stuff = function(opts, state)
-	fm.toggle(state, function()
-		state.floating = create_floating_window({
-			buf = state.floating.buf,
-		})
+    fm.toggle(state, function()
+        state.floating = create_floating_window({
+            buf = state.floating.buf,
+        })
 
-		local ok, oil = pcall(require, "oil")
-		if ok then
-			local path = vim.fs.joinpath(unpack(opts.path))
-			oil.open(vim.fs.joinpath(vim.fn.stdpath("config"), path))
-			if opts.desc then
-				print(opts.desc)
-			end
-		end
-	end)
+        local ok, oil = pcall(require, "oil")
+        if ok then
+            local path = vim.fs.joinpath(unpack(opts.path))
+            oil.open(vim.fs.joinpath(vim.fn.stdpath("config"), path))
+            if opts.desc then print(opts.desc) end
+        end
+    end)
 end
 
-
 local add_plugin = function()
-	add_stuff({
-		path = { "lua", "cleanvim", "plugins", "custom" },
-		desc = "Add custom plugins",
-	}, plugins)
+    add_stuff({
+        path = { "lua", "cleanvim", "plugins", "custom" },
+        desc = "Add custom plugins",
+    }, plugins)
 end
 
 local add_theme = function()
-	add_stuff({
-		path = { "lua", "cleanvim", "plugins", "themes" },
-		desc = "Add custom themes (filename must match theme name)",
-	}, themes)
+    add_stuff({
+        path = { "lua", "cleanvim", "plugins", "themes" },
+        desc = "Add custom themes (filename must match theme name)",
+    }, themes)
 end
 
 local add_formatter = function()
-	add_stuff({
-		path = { "lua", "cleanvim", "plugins", "lsp", "installed", "formatters.lua" },
-		desc = "Add formatter",
-	}, formatter)
+    add_stuff({
+        path = { "lua", "cleanvim", "plugins", "lsp", "installed", "formatters.lua" },
+        desc = "Add formatter",
+    }, formatter)
 end
 
 local add_linter = function()
-	add_stuff({
-		path = { "lua", "cleanvim", "plugins", "lsp", "installed", "linters.lua" },
-		desc = "Add linters",
-	}, linter)
+    add_stuff({
+        path = { "lua", "cleanvim", "plugins", "lsp", "installed", "linters.lua" },
+        desc = "Add linters",
+    }, linter)
 end
 
 local add_snippet = function()
-	add_stuff({
-		path = { "snippets" },
-		desc = "Add snippets",
-	}, snippet)
+    add_stuff({
+        path = { "snippets" },
+        desc = "Add snippets",
+    }, snippet)
 end
 
 vim.api.nvim_create_user_command("AddPlugin", add_plugin, {})

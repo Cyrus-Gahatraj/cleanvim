@@ -9,4 +9,3 @@ require("cleanvim.lazy")
 
 -- UI
 require("cleanvim.ui")
-

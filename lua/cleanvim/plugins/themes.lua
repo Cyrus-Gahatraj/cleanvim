@@ -1,3 +1,3 @@
 return {
-	{ import = "cleanvim.plugins.themes" }
+    { import = "cleanvim.plugins.themes" },
 }

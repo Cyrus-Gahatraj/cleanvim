@@ -2,9 +2,9 @@ local M = {}
 
 local apply_theme = function()
     local themes = require("telescope.themes")
-    local builtin = require('telescope.builtin')
-    local actions = require('telescope.actions')
-    local action_state = require('telescope.actions.state')
+    local builtin = require("telescope.builtin")
+    local actions = require("telescope.actions")
+    local action_state = require("telescope.actions.state")
 
     local current_theme = vim.g.cleanvim_theme or "catppuccin"
 
@@ -14,7 +14,7 @@ local apply_theme = function()
         if not selection then return end
         local theme_file = vim.fn.fnamemodify(selection[1], ":r")
         local colorscheme = require("cleanvim.ui.theme").colorscheme_for(theme_file)
-        
+
         vim.g.cleanvim_theme = colorscheme
         local ok, err = pcall(vim.cmd, "colorscheme " .. colorscheme)
         if ok and opts.save then
@@ -35,10 +35,9 @@ local apply_theme = function()
         set_theme()
     end
 
-	builtin.find_files(themes.get_dropdown({
-		cwd = vim.fn.stdpath("config") .. "/lua/cleanvim/plugins/themes",
-		attach_mappings = function(bufnr, map)
-
+    builtin.find_files(themes.get_dropdown({
+        cwd = vim.fn.stdpath("config") .. "/lua/cleanvim/plugins/themes",
+        attach_mappings = function(bufnr, map)
             map({ "i", "n" }, "<C-n>", next_color)
             map({ "i", "n" }, "<UP>", prev_color)
             map({ "i", "n" }, "<C-p>", prev_color)
@@ -48,14 +47,11 @@ local apply_theme = function()
                 set_theme({ save = true })
                 actions.close(bufnr)
             end)
-			return true
-		end,
-	}))
+            return true
+        end,
+    }))
 end
 
-
-vim.keymap.set("n", "<leader>sth", function()
-	apply_theme()
-end, { desc = "Switch theme" })
+vim.keymap.set("n", "<leader>sth", function() apply_theme() end, { desc = "Switch theme" })
 
 return M

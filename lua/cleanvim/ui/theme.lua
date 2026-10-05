@@ -7,9 +7,7 @@ local theme_map = {
     ["tokyonight"] = "tokyonight-night",
 }
 
-M.colorscheme_for = function(theme_file)
-    return theme_map[theme_file] or theme_file
-end
+M.colorscheme_for = function(theme_file) return theme_map[theme_file] or theme_file end
 
 M.setup = function()
     local colorscheme = M.colorscheme_for(vim.g.cleanvim_theme or "catppuccin")
@@ -17,7 +15,12 @@ M.setup = function()
     local colors_ok, err = pcall(vim.cmd.colorscheme, colorscheme)
     if not colors_ok then
         vim.cmd.colorscheme("default")
-        print("Cleanvim: Theme '" .. colorscheme .. "' not found, using default. Error: " .. (err or ""))
+        print(
+            "Cleanvim: Theme '"
+                .. colorscheme
+                .. "' not found, using default. Error: "
+                .. (err or "")
+        )
     end
 end
 

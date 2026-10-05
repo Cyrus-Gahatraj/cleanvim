@@ -1,3 +1,3 @@
 return {
-	require("cleanvim.plugins.wk.which-key"),
+    require("cleanvim.plugins.wk.which-key"),
 }

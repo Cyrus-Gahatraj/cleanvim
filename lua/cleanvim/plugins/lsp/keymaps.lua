@@ -4,8 +4,18 @@ if has_telescope then
     vim.keymap.set("n", "gd", telescope.lsp_definitions, { desc = "Go to definition" })
     vim.keymap.set("n", "gt", telescope.lsp_type_definitions, { desc = "Go to type definition" })
     vim.keymap.set("n", "<leader>rr", telescope.lsp_references, { desc = "References list" })
-    vim.keymap.set("n", "<leader>csd", telescope.lsp_document_symbols, { desc = "Document symbols" })
-    vim.keymap.set("n", "<leader>csw", telescope.lsp_workspace_symbols, { desc = "Workspace symbols" })
+    vim.keymap.set(
+        "n",
+        "<leader>csd",
+        telescope.lsp_document_symbols,
+        { desc = "Document symbols" }
+    )
+    vim.keymap.set(
+        "n",
+        "<leader>csw",
+        telescope.lsp_workspace_symbols,
+        { desc = "Workspace symbols" }
+    )
 else
     -- Fallback to native LSP
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })

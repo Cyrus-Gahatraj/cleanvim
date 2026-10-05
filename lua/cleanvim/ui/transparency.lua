@@ -1,31 +1,43 @@
 local M = {}
 
 local function apply_transparent()
-	local nvim_hl = {
-		"Normal", "NormalFloat", "FloatBorder",
-		"Pmenu", "PmenuThumb", "PmenuSel", "PmenuSbar",
-		"Terminal",	"EndOfBuffer", "FoldColumn", "Folded", "SignColumn", "NormalNC",
-		"TelescopeBorder", "TelescopeNormal", "TelescopePromptBorder", "TelescopePromptTitle",
-		"WhichKeyFloat",
-		"BlinkCmpMenu", "BlinkCmpMenuBorder", "BlinkCmpScrollBarGutter",
-		"BlinkCmpDoc", "BlinkCmpDocBorder"
-	}
-	for _, hl in ipairs(nvim_hl) do
-		vim.api.nvim_set_hl(0, hl, { bg = "none" })
-	end
+    local nvim_hl = {
+        "Normal",
+        "NormalFloat",
+        "FloatBorder",
+        "Pmenu",
+        "PmenuThumb",
+        "PmenuSel",
+        "PmenuSbar",
+        "Terminal",
+        "EndOfBuffer",
+        "FoldColumn",
+        "Folded",
+        "SignColumn",
+        "NormalNC",
+        "TelescopeBorder",
+        "TelescopeNormal",
+        "TelescopePromptBorder",
+        "TelescopePromptTitle",
+        "WhichKeyFloat",
+        "BlinkCmpMenu",
+        "BlinkCmpMenuBorder",
+        "BlinkCmpScrollBarGutter",
+        "BlinkCmpDoc",
+        "BlinkCmpDocBorder",
+    }
+    for _, hl in ipairs(nvim_hl) do
+        vim.api.nvim_set_hl(0, hl, { bg = "none" })
+    end
 end
 
 M.setup = function()
-	vim.api.nvim_create_autocmd("ColorScheme", {
-		callback = function()
-			if vim.g.transparency then
-				apply_transparent()
-			end
-		end,
-	})
-	if vim.g.transparency then
-		apply_transparent()
-	end
+    vim.api.nvim_create_autocmd("ColorScheme", {
+        callback = function()
+            if vim.g.transparency then apply_transparent() end
+        end,
+    })
+    if vim.g.transparency then apply_transparent() end
 end
 
 return M

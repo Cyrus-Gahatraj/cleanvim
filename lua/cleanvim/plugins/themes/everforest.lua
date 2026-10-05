@@ -1,5 +1,5 @@
 return {
-	"neanias/everforest",
-	lazy = true,
-	priority = 1000,
+    "neanias/everforest",
+    lazy = true,
+    priority = 1000,
 }

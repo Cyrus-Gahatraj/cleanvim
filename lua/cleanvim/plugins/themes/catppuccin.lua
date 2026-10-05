@@ -1,5 +1,5 @@
 return {
-	"catppuccin/nvim",
-	lazy = true,
-	priority = 1000,
+    "catppuccin/nvim",
+    lazy = true,
+    priority = 1000,
 }

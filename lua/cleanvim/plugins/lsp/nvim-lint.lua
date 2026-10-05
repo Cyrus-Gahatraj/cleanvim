@@ -17,9 +17,7 @@ return {
 
             local valid_linters = {}
             for _, name in ipairs(names) do
-                if vim.fn.executable(name) == 1 then
-                    table.insert(valid_linters, name)
-                end
+                if vim.fn.executable(name) == 1 then table.insert(valid_linters, name) end
             end
 
             if #valid_linters > 0 then
@@ -31,9 +29,7 @@ return {
 
         vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
             group = lint_augroup,
-            callback = function()
-                do_lint()
-            end,
+            callback = function() do_lint() end,
         })
 
         vim.keymap.set("n", "<leader>l", do_lint, { desc = "Run linter" })

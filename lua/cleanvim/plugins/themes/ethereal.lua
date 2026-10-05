@@ -1,5 +1,5 @@
 return {
-	"bjarneo/ethereal.nvim",
-	lazy = true,
-	priority = 1000,
+    "bjarneo/ethereal.nvim",
+    lazy = true,
+    priority = 1000,
 }
