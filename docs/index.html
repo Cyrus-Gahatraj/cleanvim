@@ -5,39 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cleanvim</title>
 <meta name="description" content="A modular, minimal, and transparent Neovim distribution.">
-<style>
-  :root {
-    --bg: #fbfaf7; --fg: #1d1d1b; --dim: #6b6a65; --line: #e4e2dc;
-    --code: #f1efe9; --accent: #3f7d4e;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root { --bg: #121211; --fg: #e6e4de; --dim: #8b8981; --line: #2a2a28; --code: #1b1b1a; --accent: #8fc79c; }
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; background: var(--bg); color: var(--fg);
-    font: 15px/1.65 ui-monospace, "JetBrains Mono", SFMono-Regular, Menlo, monospace;
-  }
-  main { max-width: 760px; margin: 0 auto; padding: 56px 16px 80px; }
-  a { color: var(--accent); }
-  h1 { font-size: 2rem; margin: 0 0 4px; letter-spacing: -0.02em; }
-  h1 span { color: var(--dim); }
-  h2 { font-size: 1rem; margin: 56px 0 12px; color: var(--dim); font-weight: 500; }
-  h2::before { content: "## "; }
-  p { margin: 0 0 12px; }
-  .dim { color: var(--dim); }
-  img { width: 100%; height: auto; border: 1px solid var(--line); border-radius: 6px; margin: 28px 0 8px; }
-  pre { background: var(--code); border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; overflow-x: auto; margin: 0 0 12px; }
-  code { font: inherit; }
-  nav { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 16px; }
-  table { width: 100%; border-collapse: collapse; }
-  td { padding: 4px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
-  td:first-child { width: 11ch; color: var(--accent); white-space: nowrap; padding-right: 16px; }
-  ul { padding-left: 2ch; margin: 0; }
-  li { margin: 2px 0; }
-  li::marker { content: "- "; color: var(--dim); }
-  footer { margin-top: 64px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--dim); font-size: 13px; }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 <main>
@@ -46,6 +14,7 @@
   <p>Clear structure, no hidden abstraction, fast through lazy-loading.</p>
   <nav>
     <a href="https://github.com/Cyrus-Gahatraj/cleanvim">github</a>
+    <a href="how.html">how it works</a>
     <a href="#install">install</a>
     <a href="#keys">keys</a>
     <a href="#plugins">plugins</a>

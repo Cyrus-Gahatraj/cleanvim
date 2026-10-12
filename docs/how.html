@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How Cleanvim works</title>
+<meta name="description" content="A walk through every part of Cleanvim: startup, lazy-loading, state, languages, LSP and the add/switch/toggle controls.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1>how it works</h1>
+  <p class="dim">Cleanvim has about 1,900 lines of Lua. This page walks through every part, so you know which file to open.</p>
+  <nav>
+    <a href="./">home</a>
+    <a href="https://github.com/Cyrus-Gahatraj/cleanvim">github</a>
+  </nav>
+
+  <h2>startup</h2>
+  <p><code>init.lua</code> loads four modules, in this order:</p>
+  <ol>
+    <li><code>config/defaults.lua</code> sets the leader key and loads your saved state (theme, transparency, diagnostics, format-on-save).</li>
+    <li><code>core/</code> sets options, keymaps and autocmds. These use only Neovim itself, with no plugins.</li>
+    <li><code>lazy.lua</code> installs lazy.nvim on first launch and loads every spec under <code>plugins/</code>.</li>
+    <li><code>ui/</code> applies the saved theme, transparency and diagnostic style.</li>
+  </ol>
+  <p>Startup takes about 25 ms. Most plugins wait until something needs them:</p>
+  <table>
+    <tr><td>startup</td><td>oil, lualine, treesitter, mini.cmdline</td></tr>
+    <tr><td>VeryLazy</td><td>which-key, mini.ai / pairs / surround / bracketed, indent guides</td></tr>
+    <tr><td>open file</td><td>LSP, mason, conform, nvim-lint, gitsigns, code context</td></tr>
+    <tr><td>insert</td><td>blink.cmp</td></tr>
+    <tr><td>keypress</td><td>telescope, harpoon, trouble, undotree, fugitive, dap</td></tr>
+    <tr><td>colorscheme</td><td>only the theme you use</td></tr>
+  </table>
+
+  <h2>state</h2>
+  <p>Anything you switch or toggle is saved to <code>~/.local/state/nvim/cleanvim.json</code>, outside the repo. This keeps your clone clean, so <code>git pull</code> never conflicts with your settings. The file is <code>config/state.lua</code>, about 30 lines.</p>
+
+  <h2>add · switch · toggle</h2>
+  <p>These are small modules in <code>plugins/builtin/</code>. They load once lazy.nvim finishes.</p>
+  <h3>add <span class="dim">␣a…</span></h3>
+  <p>Opens the matching folder (custom plugins, themes, languages, snippets) in a floating oil window. Create a file there and it's picked up on the next start.</p>
+  <h3>switch <span class="dim">␣s…</span></h3>
+  <p>A telescope picker. The theme switcher previews each theme as you move through the list. Enter saves it, and Esc goes back to the one you had.</p>
+  <h3>toggle <span class="dim">␣t…</span></h3>
+  <p>Flips a setting right away and saves it if it should last: transparency, format on save, languages. Spelling, grammar, mouse and inlay hints last only for the session.</p>
+
+  <h2>languages</h2>
+  <p>Each language is one file in <code>lua/cleanvim/languages/</code>:</p>
+<pre><code>return {
+    mason = { "gopls", "gofumpt" },       -- first entry is the LSP
+    formatters = { go = { "gofumpt" } },  -- conform
+    linters = {},                         -- nvim-lint
+}</code></pre>
+  <p><code>␣tl</code> lists every file. When you turn a language on, Mason installs its packages and its language server starts on its own. When you turn one off, its server stops and Cleanvim uninstalls any package that no other enabled language uses. A fresh install starts with only Lua and Bash.</p>
+
+  <h2>lsp</h2>
+  <ol>
+    <li>Mason installs servers and puts them on <code>PATH</code>.</li>
+    <li>mason-lspconfig calls Neovim's own <code>vim.lsp.enable()</code> for each installed server.</li>
+    <li>blink.cmp adds completion capabilities to every server through <code>vim.lsp.config("*")</code>.</li>
+    <li>When a server attaches to a buffer, <code>LspAttach</code> sets that buffer's keys (<code>gd</code>, <code>K</code>, <code>␣rn</code>, <code>␣ca</code>…). Buffers without a server keep Vim's built-in <code>gd</code> and <code>K</code>.</li>
+  </ol>
+  <p>Grammar checking (<code>␣tg</code>) uses harper-ls. It starts off and installs the first time you turn it on.</p>
+
+  <h2>syntax</h2>
+  <p>No parsers are compiled up front. Neovim already ships parsers for C, Lua, Markdown, Vim and its help files. When you open any other filetype, an autocmd in <code>core/autocmd.lua</code> installs its parser and turns highlighting on.</p>
+
+  <h2>formatting &amp; linting</h2>
+  <p>conform formats with the tools from the language files, and falls back to the LSP when no tool is installed. Format-on-save checks a flag each time you save, so <code>␣tfs</code> takes effect right away. nvim-lint runs only the linters that are actually installed.</p>
+
+  <h2>your own stuff</h2>
+  <p>Files in <code>plugins/custom/</code> are git-ignored lazy.nvim specs, so they survive updates. To change a core option or key, edit <code>core/</code> directly. Each file is short enough to read in a minute.</p>
+
+  <h2>updating</h2>
+<pre><code>git pull              # latest
+git checkout v0.1.0   # stay on a release</code></pre>
+  <p>Every push runs CI: formatting (stylua), linting (selene) and a headless start that fails on any error.</p>
+
+  <footer>
+    MIT © Cyrus Gahatraj · <a href="https://github.com/Cyrus-Gahatraj/cleanvim">source</a>
+  </footer>
+</main>
+</body>
+</html>

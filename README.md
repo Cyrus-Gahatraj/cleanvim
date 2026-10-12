@@ -70,6 +70,16 @@ git clone https://github.com/Cyrus-Gahatraj/cleanvim ~/.config/nvim
 
 Lazy.nvim will bootstrap automatically on first launch.
 
+### Updating
+
+```bash
+git pull               # latest
+git checkout v0.1.0    # or stay on a tagged release
+```
+
+Releases are listed on the [releases page](https://github.com/Cyrus-Gahatraj/cleanvim/releases).
+How every part fits together is explained at [cyrus-gahatraj.github.io/cleanvim/how.html](https://cyrus-gahatraj.github.io/cleanvim/how.html).
+
 ---
 
 ### Included Plugins
