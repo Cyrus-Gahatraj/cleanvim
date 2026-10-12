@@ -9,6 +9,11 @@ return {
         { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Live grep" },
         { "<leader>gf", "<cmd>Telescope git_files<cr>", desc = "Git file" },
         { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help tags" },
+        { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
+        { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent files" },
+        { "<leader>fw", "<cmd>Telescope grep_string<cr>", desc = "Grep word under cursor" },
+        { "<leader>fk", "<cmd>Telescope keymaps<cr>", desc = "Keymaps" },
+        { "<leader>f.", "<cmd>Telescope resume<cr>", desc = "Resume last search" },
         {
             "<leader>fc",
             function() require("telescope.builtin").find_files({ cwd = vim.fn.stdpath("config") }) end,

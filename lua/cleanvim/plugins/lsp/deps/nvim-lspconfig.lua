@@ -6,6 +6,7 @@ return {
             group = vim.api.nvim_create_augroup("lsp-attach-group", { clear = true }),
             callback = function(event)
                 local client = vim.lsp.get_client_by_id(event.data.client_id)
+                require("cleanvim.plugins.lsp.keymaps")(event.buf)
 
                 -- 1. Setup Highlight Logic
                 if
@@ -13,6 +14,8 @@ return {
                 then
                     local highlight_augroup =
                         vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
+                    -- several clients can attach to one buffer; don't stack duplicates
+                    vim.api.nvim_clear_autocmds({ group = highlight_augroup, buffer = event.buf })
                     vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
                         buffer = event.buf,
                         group = highlight_augroup,
@@ -29,7 +32,7 @@ return {
                     vim.api.nvim_create_autocmd("LspDetach", {
                         group = vim.api.nvim_create_augroup("lsp-detach-group", { clear = true }),
                         callback = function(event2)
-                            vim.lsp.buf.clear_references()
+                            vim.lsp.util.buf_clear_references(event2.buf)
                             vim.api.nvim_clear_autocmds({
                                 group = "lsp-highlight",
                                 buffer = event2.buf,
@@ -45,7 +48,8 @@ return {
                         "<leader>th",
                         function()
                             vim.lsp.inlay_hint.enable(
-                                not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf })
+                                not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }),
+                                { bufnr = event.buf }
                             )
                         end,
                         { buffer = event.buf, desc = "LSP: Toggle Inlay Hints" }

@@ -1,6 +1,6 @@
 return {
     "stevearc/oil.nvim",
-    dependencies = { { "nvim-mini/mini.icons", opts = {} } },
+    dependencies = { "nvim-mini/mini.icons" },
     lazy = false,
     config = function()
         local oil = require("oil")

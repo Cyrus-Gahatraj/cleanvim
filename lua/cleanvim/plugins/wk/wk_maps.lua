@@ -37,6 +37,7 @@ M.setup = function()
 
         -- Git
         { "<leader>g", group = "Git" },
+        { "<leader>gp", group = "Push / pull / preview" },
 
         -- Code
         { "<leader>c", group = "Code" },

@@ -12,6 +12,26 @@ return {
             },
         })
 
+        -- Hunk navigation (h is free in mini.bracketed)
+        vim.keymap.set(
+            "n",
+            "]h",
+            function() require("gitsigns").nav_hunk("next") end,
+            { desc = "Next hunk" }
+        )
+        vim.keymap.set(
+            "n",
+            "[h",
+            function() require("gitsigns").nav_hunk("prev") end,
+            { desc = "Prev hunk" }
+        )
+        vim.keymap.set(
+            "n",
+            "<leader>gS",
+            "<cmd>Gitsigns stage_hunk<CR>",
+            { desc = "Git stage hunk" }
+        )
+
         -- Git preview commands
         vim.keymap.set(
             "n",

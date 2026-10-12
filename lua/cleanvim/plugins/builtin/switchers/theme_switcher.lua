@@ -7,6 +7,7 @@ local apply_theme = function()
     local action_state = require("telescope.actions.state")
 
     local current_theme = vim.g.cleanvim_theme or "catppuccin"
+    local saved = false
 
     local set_theme = function(opts)
         opts = opts or {}
@@ -18,6 +19,7 @@ local apply_theme = function()
         vim.g.cleanvim_theme = colorscheme
         local ok, err = pcall(vim.cmd, "colorscheme " .. colorscheme)
         if ok and opts.save then
+            saved = true
             require("cleanvim.config.state").set("theme", colorscheme)
         elseif not ok then
             pcall(vim.cmd, "colorscheme " .. current_theme)
@@ -42,6 +44,18 @@ local apply_theme = function()
             map({ "i", "n" }, "<UP>", prev_color)
             map({ "i", "n" }, "<C-p>", prev_color)
             map({ "i", "n" }, "<DOWN>", next_color)
+
+            -- cancelling keeps the theme you started with, not the last preview
+            actions.close:enhance({
+                post = function()
+                    if saved then return end
+                    vim.g.cleanvim_theme = current_theme
+                    pcall(
+                        vim.cmd.colorscheme,
+                        require("cleanvim.ui.theme").colorscheme_for(current_theme)
+                    )
+                end,
+            })
 
             actions.select_default:replace(function()
                 set_theme({ save = true })

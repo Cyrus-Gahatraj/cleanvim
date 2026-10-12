@@ -1,33 +1,29 @@
-local has_telescope, telescope = pcall(require, "telescope.builtin")
+-- Buffer-local, set on LspAttach so non-LSP buffers keep the builtin gd / K
+return function(buf)
+    local map = function(mode, lhs, rhs, desc)
+        vim.keymap.set(mode, lhs, rhs, { buffer = buf, desc = desc })
+    end
 
-if has_telescope then
-    vim.keymap.set("n", "gd", telescope.lsp_definitions, { desc = "Go to definition" })
-    vim.keymap.set("n", "gt", telescope.lsp_type_definitions, { desc = "Go to type definition" })
-    vim.keymap.set("n", "<leader>rr", telescope.lsp_references, { desc = "References list" })
-    vim.keymap.set(
-        "n",
-        "<leader>csd",
-        telescope.lsp_document_symbols,
-        { desc = "Document symbols" }
-    )
-    vim.keymap.set(
-        "n",
-        "<leader>csw",
-        telescope.lsp_workspace_symbols,
-        { desc = "Workspace symbols" }
-    )
-else
-    -- Fallback to native LSP
-    vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
-    vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { desc = "Go to type definition" })
-    vim.keymap.set("n", "<leader>rr", vim.lsp.buf.references, { desc = "References list" })
-    vim.keymap.set("n", "<leader>csd", vim.lsp.buf.document_symbol, { desc = "Document symbols" })
-    vim.keymap.set("n", "<leader>csw", vim.lsp.buf.workspace_symbol, { desc = "Workspace symbols" })
+    local has_telescope, telescope = pcall(require, "telescope.builtin")
+
+    if has_telescope then
+        map("n", "gd", telescope.lsp_definitions, "Go to definition")
+        map("n", "gt", telescope.lsp_type_definitions, "Go to type definition")
+        map("n", "<leader>rr", telescope.lsp_references, "References list")
+        map("n", "<leader>csd", telescope.lsp_document_symbols, "Document symbols")
+        map("n", "<leader>csw", telescope.lsp_dynamic_workspace_symbols, "Workspace symbols")
+    else
+        -- Fallback to native LSP
+        map("n", "gd", vim.lsp.buf.definition, "Go to definition")
+        map("n", "gt", vim.lsp.buf.type_definition, "Go to type definition")
+        map("n", "<leader>rr", vim.lsp.buf.references, "References list")
+        map("n", "<leader>csd", vim.lsp.buf.document_symbol, "Document symbols")
+        map("n", "<leader>csw", vim.lsp.buf.workspace_symbol, "Workspace symbols")
+    end
+
+    -- Common LSP Keymaps
+    map("n", "K", vim.lsp.buf.hover, "Hover documentation")
+    map("n", "<leader>rn", vim.lsp.buf.rename, "Rename symbol")
+    map("i", "<C-h>", vim.lsp.buf.signature_help, "Signature help")
+    map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "Code action")
 end
-
--- Common LSP Keymaps
-vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover documentation" })
-vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Diagnostic" })
-vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename symbol" })
-vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, { desc = "Signature help" })
-vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })

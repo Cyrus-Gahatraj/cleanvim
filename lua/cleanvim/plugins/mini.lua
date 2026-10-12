@@ -6,4 +6,5 @@ return {
     require(mini .. "pairs"),
     require(mini .. "bracketed"),
     require(mini .. "cmdline"),
+    require(mini .. "icons"),
 }

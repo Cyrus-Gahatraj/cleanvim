@@ -31,12 +31,40 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     callback = function() vim.hl.on_yank() end,
 })
 
--- Auto start tree-sitter
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "*",
-    callback = function()
-        if pcall(vim.treesitter.start) then
-            vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+vim.api.nvim_create_autocmd("BufReadPost", {
+    desc = "Restore last cursor position",
+    group = vim.api.nvim_create_augroup("last-position", { clear = true }),
+    callback = function(args)
+        local mark = vim.api.nvim_buf_get_mark(args.buf, '"')
+        if mark[1] > 1 and mark[1] <= vim.api.nvim_buf_line_count(args.buf) then
+            pcall(vim.api.nvim_win_set_cursor, 0, mark)
         end
+    end,
+})
+
+-- Auto start tree-sitter, installing the parser on first use
+local ts_tried = {}
+vim.api.nvim_create_autocmd("FileType", {
+    group = vim.api.nvim_create_augroup("treesitter-start", { clear = true }),
+    callback = function(args)
+        local lang = vim.treesitter.language.get_lang(args.match)
+        if not lang then return end
+
+        local start = function()
+            if pcall(vim.treesitter.start, args.buf, lang) then
+                vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+            end
+        end
+
+        if vim.treesitter.language.add(lang) then return start() end
+
+        local ok, ts = pcall(require, "nvim-treesitter")
+        if not ok or ts_tried[lang] or not vim.list_contains(ts.get_available(), lang) then
+            return
+        end
+        ts_tried[lang] = true
+        ts.install(lang):await(vim.schedule_wrap(function()
+            if vim.api.nvim_buf_is_valid(args.buf) then start() end
+        end))
     end,
 })

@@ -108,6 +108,8 @@ Cleanvim ships with some of the plugins
 
 - [mini.cmdline](https://github.com/echasnovski/mini.cmdline) - Command-line enhancements
 
+- [mini.icons](https://github.com/echasnovski/mini.icons) - Icons (also serves plugins that expect nvim-web-devicons)
+
 #### Navigation & Search
 
 - [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) - Fuzzy finder
@@ -130,7 +132,7 @@ Cleanvim ships with some of the plugins
  
 - [nvim-lint](https://github.com/mfussenegger/nvim-lint) - Linter
 
-- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Syntax parsing
+- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Syntax parsing (missing parsers install on first use)
 
 - [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context) - Sticky code context
 

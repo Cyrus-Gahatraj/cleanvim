@@ -59,6 +59,7 @@
     <li><strong>Predictable.</strong> Your choices of theme, diagnostics, transparency and format-on-save stay saved between sessions.</li>
     <li><strong>Extend, don't fork.</strong> Add, switch and toggle without editing core files.</li>
     <li><strong>Fast.</strong> Plugins load lazily, only when you need them.</li>
+    <li><strong>Zero setup.</strong> Tree-sitter parsers install themselves the first time you open a language.</li>
   </ul>
 
   <h2 id="install">install</h2>
@@ -103,9 +104,13 @@ nvim</code></pre>
   <table>
     <tr><td>␣e</td><td>file explorer (oil)</td></tr>
     <tr><td>␣ff / ␣fg</td><td>find files / live grep</td></tr>
+    <tr><td>␣fb / ␣fr</td><td>buffers / recent files</td></tr>
+    <tr><td>␣fw / ␣f.</td><td>grep word under cursor / resume search</td></tr>
     <tr><td>␣ca</td><td>code action</td></tr>
     <tr><td>␣rn</td><td>rename symbol</td></tr>
     <tr><td>␣gs</td><td>git status</td></tr>
+    <tr><td>]h / [h</td><td>next / prev git hunk</td></tr>
+    <tr><td>C-h/j/k/l</td><td>move between windows</td></tr>
     <tr><td>␣ha</td><td>harpoon add file</td></tr>
     <tr><td>␣u</td><td>undo tree</td></tr>
     <tr><td>␣Db</td><td>toggle breakpoint</td></tr>
@@ -113,7 +118,7 @@ nvim</code></pre>
 
   <h2 id="plugins">plugins</h2>
   <ul>
-    <li><strong>core</strong> <span class="dim">lazy.nvim, which-key, oil, blink.cmp, lualine, undotree, harpoon, trouble, indent-blankline</span></li>
+    <li><strong>core</strong> <span class="dim">lazy.nvim, which-key, oil, mini.icons, blink.cmp, lualine, undotree, harpoon, trouble, indent-blankline</span></li>
     <li><strong>editing</strong> <span class="dim">mini.ai, mini.pairs, mini.surround, mini.bracketed, mini.cmdline</span></li>
     <li><strong>search</strong> <span class="dim">telescope</span></li>
     <li><strong>git</strong> <span class="dim">gitsigns, vim-fugitive</span></li>

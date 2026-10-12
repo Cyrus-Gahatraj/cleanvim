@@ -7,7 +7,6 @@ local function apply_transparent()
         "FloatBorder",
         "Pmenu",
         "PmenuThumb",
-        "PmenuSel",
         "PmenuSbar",
         "Terminal",
         "EndOfBuffer",
@@ -26,8 +25,11 @@ local function apply_transparent()
         "BlinkCmpDoc",
         "BlinkCmpDocBorder",
     }
-    for _, hl in ipairs(nvim_hl) do
-        vim.api.nvim_set_hl(0, hl, { bg = "none" })
+    for _, name in ipairs(nvim_hl) do
+        -- keep fg/bold/etc., only drop the background
+        local hl = vim.api.nvim_get_hl(0, { name = name, link = false })
+        hl.bg, hl.ctermbg = nil, nil
+        vim.api.nvim_set_hl(0, name, hl)
     end
 end
 

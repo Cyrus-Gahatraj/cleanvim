@@ -20,7 +20,6 @@ return {
         config = function()
             -- v2 auto-enables installed servers via vim.lsp.enable
             require("mason-lspconfig").setup()
-            require("cleanvim.plugins.lsp.keymaps")
         end,
     },
 }

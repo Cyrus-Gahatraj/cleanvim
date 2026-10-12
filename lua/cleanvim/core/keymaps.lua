@@ -15,6 +15,15 @@ vim.keymap.set("n", "g#", "g#zz")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
+-- Diagnostics come from linters too, not only LSP
+vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Diagnostic" })
+
+-- Windows
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Window left" })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Window down" })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Window up" })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Window right" })
+
 -- Tabs
 vim.keymap.set("n", "<leader><tab><tab>", "<cmd>tabnew<CR>", { desc = "Open Tab" })
 vim.keymap.set("n", "<leader><tab>x", "<cmd>tabclose<CR>", { desc = "Close Tab" })
@@ -22,7 +31,16 @@ vim.keymap.set("n", "<leader><tab>n", "<cmd>tabnext<CR>", { desc = "Next Tab" })
 vim.keymap.set("n", "<leader><tab>p", "<cmd>tabprev<CR>", { desc = "Previous Tab" })
 
 -- Buffer
-vim.keymap.set("n", "<leader>bd", "<cmd>bp|bd #<CR>", { desc = "Delete buffer" })
+vim.keymap.set("n", "<leader>bd", function()
+    local buf = vim.api.nvim_get_current_buf()
+    if vim.bo[buf].modified then
+        return vim.notify("Buffer has unsaved changes", vim.log.levels.WARN)
+    end
+    vim.cmd("bprevious")
+    -- last listed buffer: bprevious stays put, so open an empty one instead
+    if vim.api.nvim_get_current_buf() == buf then vim.cmd("enew") end
+    vim.cmd("bdelete " .. buf)
+end, { desc = "Delete buffer" })
 vim.keymap.set("n", "<leader>bn", "<cmd>bnext<CR>", { desc = "Next buffer" })
 vim.keymap.set("n", "<leader>bp", "<cmd>bprevious<CR>", { desc = "Previous buffer" })
 vim.keymap.set("n", "<leader>br", "<cmd>e #<CR>", { desc = "Reopen last buffer" })
