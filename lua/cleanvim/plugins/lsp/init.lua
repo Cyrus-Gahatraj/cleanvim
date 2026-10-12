@@ -18,8 +18,11 @@ return {
             require(deps .. "fidget"),
         },
         config = function()
-            -- v2 auto-enables installed servers via vim.lsp.enable
-            require("mason-lspconfig").setup()
+            -- v2 auto-enables installed servers via vim.lsp.enable;
+            -- harper_ls (grammar) stays off until <leader>tg
+            require("mason-lspconfig").setup({
+                automatic_enable = { exclude = { "harper_ls" } },
+            })
         end,
     },
 }

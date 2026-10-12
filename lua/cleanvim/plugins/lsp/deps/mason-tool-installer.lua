@@ -12,6 +12,7 @@ return {
                 "pyright",
                 "typescript-language-server",
                 "marksman",
+                "harper-ls", -- grammar, toggled with <leader>tg
 
                 -- formatters / linters
                 "stylua",
