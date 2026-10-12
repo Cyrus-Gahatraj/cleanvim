@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cleanvim</title>
+<meta name="description" content="A modular, minimal, and transparent Neovim distribution.">
+<style>
+  :root {
+    --bg: #fbfaf7; --fg: #1d1d1b; --dim: #6b6a65; --line: #e4e2dc;
+    --code: #f1efe9; --accent: #3f7d4e;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #121211; --fg: #e6e4de; --dim: #8b8981; --line: #2a2a28; --code: #1b1b1a; --accent: #8fc79c; }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--fg);
+    font: 15px/1.65 ui-monospace, "JetBrains Mono", SFMono-Regular, Menlo, monospace;
+  }
+  main { max-width: 760px; margin: 0 auto; padding: 56px 16px 80px; }
+  a { color: var(--accent); }
+  h1 { font-size: 2rem; margin: 0 0 4px; letter-spacing: -0.02em; }
+  h1 span { color: var(--dim); }
+  h2 { font-size: 1rem; margin: 56px 0 12px; color: var(--dim); font-weight: 500; }
+  h2::before { content: "## "; }
+  p { margin: 0 0 12px; }
+  .dim { color: var(--dim); }
+  img { width: 100%; height: auto; border: 1px solid var(--line); border-radius: 6px; margin: 28px 0 8px; }
+  pre { background: var(--code); border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; overflow-x: auto; margin: 0 0 12px; }
+  code { font: inherit; }
+  nav { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 16px; }
+  table { width: 100%; border-collapse: collapse; }
+  td { padding: 4px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  td:first-child { width: 11ch; color: var(--accent); white-space: nowrap; padding-right: 16px; }
+  ul { padding-left: 2ch; margin: 0; }
+  li { margin: 2px 0; }
+  li::marker { content: "- "; color: var(--dim); }
+  footer { margin-top: 64px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--dim); font-size: 13px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>cleanvim<span>.lua</span></h1>
+  <p class="dim">A modular, minimal, and transparent Neovim distribution.</p>
+  <p>Clear structure, no hidden abstraction, fast through lazy-loading.</p>
+  <nav>
+    <a href="https://github.com/Cyrus-Gahatraj/cleanvim">github</a>
+    <a href="#install">install</a>
+    <a href="#keys">keys</a>
+    <a href="#plugins">plugins</a>
+  </nav>
+
+  <img src="https://raw.githubusercontent.com/Cyrus-Gahatraj/cleanvim/master/assets/hero_shot.png" alt="Cleanvim running in a terminal">
+
+  <h2>philosophy</h2>
+  <ul>
+    <li><strong>Explicit.</strong> One plugin, one file. You can tell what a file does from its path.</li>
+    <li><strong>Predictable.</strong> Your choices of theme, diagnostics, transparency and format-on-save stay saved between sessions.</li>
+    <li><strong>Extend, don't fork.</strong> Add, switch and toggle without editing core files.</li>
+    <li><strong>Fast.</strong> Plugins load lazily, only when you need them.</li>
+  </ul>
+
+  <h2 id="install">install</h2>
+  <p class="dim">Needs Neovim 0.11+ and a Nerd Font.</p>
+<pre><code># back up your current config
+mv ~/.config/nvim ~/.config/nvim.bak
+mv ~/.local/share/nvim ~/.local/share/nvim.bak
+
+# clone
+git clone https://github.com/Cyrus-Gahatraj/cleanvim ~/.config/nvim
+
+# launch: lazy.nvim installs itself on first run
+nvim</code></pre>
+
+  <h2>layout</h2>
+<pre><code>lua/cleanvim/
+├── core/      options, keymaps, autocmds
+├── config/    defaults and saved state
+├── plugins/   one spec per plugin
+│   └── custom/  your plugins go here
+├── ui/        themes, transparency, diagnostics
+└── lazy.lua   plugin manager bootstrap</code></pre>
+
+  <h2 id="keys">add · switch · toggle</h2>
+  <p class="dim">Leader is <code>&lt;space&gt;</code>. Press it and wait to see every binding in which-key.</p>
+  <table>
+    <tr><td>␣ap</td><td>add plugin</td></tr>
+    <tr><td>␣at</td><td>add theme</td></tr>
+    <tr><td>␣as</td><td>add snippet</td></tr>
+    <tr><td>␣af / ␣al</td><td>add formatter / linter</td></tr>
+    <tr><td>␣sth</td><td>switch theme</td></tr>
+    <tr><td>␣sd</td><td>switch diagnostic style</td></tr>
+    <tr><td>␣tiv</td><td>toggle transparency</td></tr>
+    <tr><td>␣tfs</td><td>toggle format on save</td></tr>
+    <tr><td>␣th</td><td>toggle inlay hints</td></tr>
+    <tr><td>␣tc</td><td>toggle code context</td></tr>
+    <tr><td>␣tt</td><td>toggle terminal</td></tr>
+    <tr><td>␣tm</td><td>toggle mouse</td></tr>
+  </table>
+
+  <h2>everyday</h2>
+  <table>
+    <tr><td>␣e</td><td>file explorer (oil)</td></tr>
+    <tr><td>␣ff / ␣fg</td><td>find files / live grep</td></tr>
+    <tr><td>␣ca</td><td>code action</td></tr>
+    <tr><td>␣rn</td><td>rename symbol</td></tr>
+    <tr><td>␣gs</td><td>git status</td></tr>
+    <tr><td>␣ha</td><td>harpoon add file</td></tr>
+    <tr><td>␣u</td><td>undo tree</td></tr>
+    <tr><td>␣Db</td><td>toggle breakpoint</td></tr>
+  </table>
+
+  <h2 id="plugins">plugins</h2>
+  <ul>
+    <li><strong>core</strong> <span class="dim">lazy.nvim, which-key, oil, blink.cmp, lualine, undotree, harpoon, trouble</span></li>
+    <li><strong>editing</strong> <span class="dim">mini.ai, mini.pairs, mini.surround, mini.bracketed, mini.cmdline</span></li>
+    <li><strong>search</strong> <span class="dim">telescope</span></li>
+    <li><strong>git</strong> <span class="dim">gitsigns, vim-fugitive</span></li>
+    <li><strong>lsp</strong> <span class="dim">nvim-lspconfig, mason, conform, nvim-lint, treesitter, fidget</span></li>
+    <li><strong>debug</strong> <span class="dim">nvim-dap</span></li>
+  </ul>
+
+  <h2>themes</h2>
+  <p class="dim">catppuccin · gruvbox · kanagawa · tokyonight · nord · rose-pine · everforest · monokai-pro · flexoki · bamboo · ethereal · cyberdream</p>
+
+  <footer>
+    MIT © Cyrus Gahatraj · <a href="https://github.com/Cyrus-Gahatraj/cleanvim">source</a> · contributions welcome
+  </footer>
+</main>
+</body>
+</html>
