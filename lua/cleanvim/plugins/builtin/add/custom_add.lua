@@ -15,6 +15,7 @@ local add_stuff = function(opts, state)
     fm.toggle(state, function()
         state.floating = create_floating_window({
             buf = state.floating.buf,
+            minimal = false,
         })
 
         local ok, oil = pcall(require, "oil")

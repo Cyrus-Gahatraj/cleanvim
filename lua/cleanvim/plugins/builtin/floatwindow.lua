@@ -23,7 +23,8 @@ return {
             height = height,
             col = col,
             row = row,
-            style = "minimal",
+            -- minimal is re-applied on every buffer enter, so file-editing floats opt out
+            style = opts.minimal ~= false and "minimal" or nil,
             border = opts.border or "rounded",
         }
 
