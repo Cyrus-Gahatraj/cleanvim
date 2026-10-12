@@ -8,10 +8,11 @@ end
 -- Grammar via harper-ls (an LSP); off by default since it also checks code comments
 local toggle_grammar = function()
     if vim.fn.executable("harper-ls") == 0 then
-        return vim.notify(
-            "harper-ls not installed, run :MasonInstall harper-ls",
-            vim.log.levels.WARN
-        )
+        -- installed on first use; grammar turns on once it's ready
+        return require("cleanvim.languages").mason_install({ "harper-ls" }, function()
+            vim.lsp.enable("harper_ls")
+            print("Grammar: on")
+        end)
     end
     local enable = not vim.lsp.is_enabled("harper_ls")
     vim.lsp.enable("harper_ls", enable)

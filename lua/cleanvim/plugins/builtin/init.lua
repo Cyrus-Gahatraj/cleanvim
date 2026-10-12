@@ -11,6 +11,7 @@ vim.api.nvim_create_autocmd("User", {
         require("cleanvim.plugins.builtin.toggle.formatter")
         require("cleanvim.plugins.builtin.toggle.terminal")
         require("cleanvim.plugins.builtin.toggle.spelling")
+        require("cleanvim.plugins.builtin.toggle.languages")
     end,
 })
 

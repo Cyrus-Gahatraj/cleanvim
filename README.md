@@ -47,9 +47,9 @@ Cleanvim provides built-in control for extending and modifying editor behavior w
 
 | Action | Purpose                                                                            |
 | ------ | ---------------------------------------------------------------------------------- |
-| Add    | Extend functionality (themes, plugins, formatter, linter)                          |
+| Add    | Extend functionality (themes, plugins, languages, snippets)                        |
 | Switch | Change active style (theme, diagnostic style)                                      |
-| Toggle | Enable or disable runtime behavior (invisibility, format-on-save, inline comments) |
+| Toggle | Enable or disable runtime behavior (languages, invisibility, format-on-save, ...)  |
 
 ## Installation
 
@@ -126,8 +126,6 @@ Cleanvim ships with some of the plugins
 
 - [mason.nvim](https://github.com/williamboman/mason.nvim) - LSP/DAP/tool installer
 
-- [mason-tool-installer](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim) - Automates installation of external binaries 
-
 - [conform.nvim](https://github.com/stevearc/conform.nvim) - Formatter
  
 - [nvim-lint](https://github.com/mfussenegger/nvim-lint) - Linter
@@ -189,6 +187,23 @@ lua/cleanvim/plugins/custom/
 ```
 
 Or just use the keymap **\<leader\>ap**
+
+### Languages
+
+Each language is one small file in `lua/cleanvim/languages/` listing the Mason
+packages it needs and the formatters / linters to run:
+
+```lua
+-- lua/cleanvim/languages/go.lua
+return {
+    mason = { "gopls", "gofumpt" },
+    formatters = { go = { "gofumpt" } },
+}
+```
+
+Toggle languages on and off with **\<leader\>tl**. Turning one on installs its
+tools; turning it off removes the ones no other enabled language uses. Add a new
+language by dropping a file in that folder (**\<leader\>al** opens it).
 
 ### Keymaps & Options
 

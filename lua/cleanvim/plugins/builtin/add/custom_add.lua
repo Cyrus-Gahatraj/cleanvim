@@ -7,8 +7,7 @@ local fm = require("cleanvim.plugins.builtin.floatmanager")
 
 local plugins = fm.register("plugins")
 local themes = fm.register("themes")
-local formatter = fm.register("formatter")
-local linter = fm.register("linter")
+local language = fm.register("language")
 local snippet = fm.register("snippet")
 
 local add_stuff = function(opts, state)
@@ -41,18 +40,11 @@ local add_theme = function()
     }, themes)
 end
 
-local add_formatter = function()
+local add_language = function()
     add_stuff({
-        path = { "lua", "cleanvim", "plugins", "lsp", "installed", "formatters.lua" },
-        desc = "Add formatter",
-    }, formatter)
-end
-
-local add_linter = function()
-    add_stuff({
-        path = { "lua", "cleanvim", "plugins", "lsp", "installed", "linters.lua" },
-        desc = "Add linters",
-    }, linter)
+        path = { "lua", "cleanvim", "languages" },
+        desc = "Add a language: copy a file, then enable it with <leader>tl",
+    }, language)
 end
 
 local add_snippet = function()
@@ -68,11 +60,8 @@ vim.keymap.set("n", "<leader>ap", add_plugin, { desc = "Add plugin" })
 vim.api.nvim_create_user_command("AddTheme", add_theme, {})
 vim.keymap.set("n", "<leader>at", add_theme, { desc = "Add theme" })
 
-vim.api.nvim_create_user_command("AddFormatter", add_formatter, {})
-vim.keymap.set("n", "<leader>af", add_formatter, { desc = "Add formatter" })
-
-vim.api.nvim_create_user_command("AddLinter", add_linter, {})
-vim.keymap.set("n", "<leader>al", add_linter, { desc = "Add linter" })
+vim.api.nvim_create_user_command("AddLanguage", add_language, {})
+vim.keymap.set("n", "<leader>al", add_language, { desc = "Add language" })
 
 vim.api.nvim_create_user_command("AddSnippet", add_snippet, {})
 vim.keymap.set("n", "<leader>as", add_snippet, { desc = "Add snippet" })

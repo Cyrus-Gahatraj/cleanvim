@@ -1,5 +1,3 @@
-local installed_formatters = require("cleanvim.plugins.lsp.installed.formatters")
-
 return {
     "stevearc/conform.nvim",
     event = {
@@ -9,7 +7,7 @@ return {
     config = function()
         local conform = require("conform")
         conform.setup({
-            formatters_by_ft = installed_formatters,
+            formatters_by_ft = require("cleanvim.languages").formatters(),
             -- checked on every save so <leader>tfs applies immediately
             format_on_save = function()
                 if vim.g.format_on_save then

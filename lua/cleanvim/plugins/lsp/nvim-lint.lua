@@ -1,13 +1,10 @@
--- Installed Linter
-local installed_linters = require("cleanvim.plugins.lsp.installed.linters")
-
 return {
     "mfussenegger/nvim-lint",
     event = { "BufReadPre", "BufNewFile" },
     config = function()
         local lint = require("lint")
 
-        lint.linters_by_ft = installed_linters
+        lint.linters_by_ft = require("cleanvim.languages").linters()
 
         local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
         local function do_lint()

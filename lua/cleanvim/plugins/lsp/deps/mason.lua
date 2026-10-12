@@ -10,5 +10,6 @@ return {
                 },
             },
         })
+        require("cleanvim.languages").install()
     end,
 }
