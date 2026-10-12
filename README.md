@@ -17,17 +17,17 @@ It favors clean architecture over hidden abstraction and remains fast through la
 ## Directory Structure
 
 ```
-~/.config/cleanvim/
+~/.config/nvim/
 ├── init.lua              # Entry point
 ├── lazy-lock.json       
 ├── LICENSE
 └── lua/
     └── cleanvim/         # Main namespace
-        ├── core/         # Options, keymaps, autocmds, commands
+        ├── core/         # Options, keymaps, autocmds
         ├── config/       # Defaults and saved state
         ├── plugins/      # Default plugin specifications
+        │   └── custom/   # User plugins and overrides
         ├── ui/           # Themes, transparency, diagnostics
-        ├── custom/       # User overrides and extensions
         └── lazy.lua      # Plugin manager bootstrap
 ```
 
@@ -36,7 +36,7 @@ It favors clean architecture over hidden abstraction and remains fast through la
 * **`core/`** – fundamental editor behavior 
 * **`plugins/`** – default plugins 
 * **`ui/`** – appearance-related configuration
-* **`custom/`** – user playground
+* **`plugins/custom/`** – user playground
 * **`config/state.lua`** – persisted state (stored in `stdpath("state")/cleanvim.json`)
 
 ---
@@ -90,11 +90,15 @@ Cleanvim ships with some of the plugins
 
 - [lualine](https://github.com/nvim-lualine/lualine.nvim) - Statusline 
 
+- [harpoon](https://github.com/ThePrimeagen/harpoon) - Quick file marks
+
+- [trouble.nvim](https://github.com/folke/trouble.nvim) - Diagnostics list
+
+- [indent-blankline](https://github.com/lukas-reineke/indent-blankline.nvim) - Indent guides
+
 #### Editing (mini.nvim suite)
 
 - [mini.ai](https://github.com/echasnovski/mini.ai) - Text objects
-
-- [mini.comment](https://github.com/echasnovski/mini.comment) - Commenting
 
 - [mini.pairs](https://github.com/echasnovski/mini.pairs) - Auto pairs
 
@@ -114,8 +118,6 @@ Cleanvim ships with some of the plugins
 
 - [vim-fugitive](https://github.com/tpope/vim-fugitive) - Git integration
 
-- [lazygit.nvim](https://github.com/kdheepak/lazygit.nvim) - LazyGit integration
-
 #### LSP & Tooling
 
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) - LSP configuration
@@ -128,7 +130,19 @@ Cleanvim ships with some of the plugins
  
 - [nvim-lint](https://github.com/mfussenegger/nvim-lint) - Linter
 
-- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
+- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Syntax parsing
+
+- [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context) - Sticky code context
+
+- [fidget.nvim](https://github.com/j-hui/fidget.nvim) - LSP progress
+
+- [lazydev.nvim](https://github.com/folke/lazydev.nvim) - Lua LSP for Neovim config
+
+#### Debugging
+
+- [nvim-dap](https://github.com/mfussenegger/nvim-dap) - Debug adapter protocol
+
+- [nvim-dap-view](https://github.com/igorlfs/nvim-dap-view) - Debugger UI
 
 #### Themes
 
@@ -156,8 +170,6 @@ Built-in theme support with persistent selection:
 
 - *Ethereal*
 
-- *Matteblack*
-
 - *Cyberdream*
 
 --- 
@@ -171,7 +183,7 @@ Cleanvim is designed to be extended without modifying core files.
 Place your plugins in:
 
 ```
-lua/cleanvim/custom/plugins/
+lua/cleanvim/plugins/custom/
 ```
 
 Or just use the keymap **\<leader\>ap**
