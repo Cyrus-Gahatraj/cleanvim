@@ -51,7 +51,9 @@ vim.api.nvim_create_autocmd("FileType", {
         if not lang then return end
 
         local start = function()
-            if pcall(vim.treesitter.start, args.buf, lang) then
+            if not pcall(vim.treesitter.start, args.buf, lang) then return end
+            -- without indent queries it returns -1; keep Vim's own indent then
+            if vim.treesitter.query.get(lang, "indents") then
                 vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
             end
         end

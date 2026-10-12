@@ -1,6 +1,7 @@
 -- Each file next to this one describes a language: the mason packages it needs
 -- (LSP servers start automatically once installed) and which formatters and
 -- linters run per filetype. Turn languages on/off with <leader>tl.
+-- Convention: the first mason package is the language server.
 local M = {}
 
 local state = require("cleanvim.config.state")
@@ -15,12 +16,34 @@ M.all = function()
     return names
 end
 
-M.enabled = function() return state.load().languages end
-
 -- A language file that was deleted or has a typo shouldn't break startup
 local get = function(name)
     local ok, lang = pcall(require, "cleanvim.languages." .. name)
     return ok and type(lang) == "table" and lang or {}
+end
+
+-- First run starts light (lua + bash); languages whose server is already
+-- installed stay on, so existing setups keep working after an update
+local first_run = function()
+    local enabled = { "lua", "bash" }
+    local packages = vim.fn.stdpath("data") .. "/mason/packages/"
+    for _, name in ipairs(M.all()) do
+        local server = (get(name).mason or {})[1]
+        if
+            server
+            and not vim.list_contains(enabled, name)
+            and vim.uv.fs_stat(packages .. server)
+        then
+            table.insert(enabled, name)
+        end
+    end
+    state.set("languages", enabled)
+    return enabled
+end
+
+M.enabled = function()
+    local saved = state.load().languages
+    return type(saved) == "table" and saved or first_run()
 end
 
 local by_ft = function(key)

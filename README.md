@@ -201,6 +201,7 @@ return {
 }
 ```
 
+A fresh install starts with only Lua and Bash, so the first launch stays quick.
 Toggle languages on and off with **\<leader\>tl**. Turning one on installs its
 tools; turning it off removes the ones no other enabled language uses. Add a new
 language by dropping a file in that folder (**\<leader\>al** opens it).

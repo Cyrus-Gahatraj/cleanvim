@@ -9,8 +9,7 @@ local defaults = {
     format_on_save = false,
     -- Available options: "text-and-sign", "only-text", "only-sign" and "none"
     view_diagnostic = "text-and-sign",
-    -- files in lua/cleanvim/languages/, toggled with <leader>tl
-    languages = { "lua", "bash", "python", "web", "json", "yaml", "markdown", "toml", "c" },
+    -- languages: picked on first run by cleanvim.languages
 }
 
 M.load = function()
