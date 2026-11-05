@@ -13,10 +13,7 @@ local apply_agent = function(opts)
         .new({
             prompt_title = "Agent (current: " .. vim.g.cleanvim_agent .. ")",
             finder = finders.new_table({
-                results = vim.tbl_filter(
-                    function(a) return vim.fn.executable(a) == 1 end,
-                    agents
-                ),
+                results = vim.tbl_filter(function(a) return vim.fn.executable(a) == 1 end, agents),
             }),
             sorter = conf.generic_sorter(opts),
             attach_mappings = function(bufnr, _)
