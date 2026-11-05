@@ -7,6 +7,8 @@ local defaults = {
     theme = "catppuccin",
     transparency = true,
     format_on_save = false,
+    -- CLI opened by <leader>ta; change with :Agent <cmd>
+    agent = "claude",
     -- Available options: "text-and-sign", "only-text", "only-sign" and "none"
     view_diagnostic = "text-and-sign",
     -- languages: picked on first run by cleanvim.languages

@@ -7,9 +7,11 @@ vim.api.nvim_create_autocmd("User", {
         require("cleanvim.plugins.builtin.add.custom_add")
         require("cleanvim.plugins.builtin.switchers.theme_switcher")
         require("cleanvim.plugins.builtin.switchers.diagnostic_switcher")
+        require("cleanvim.plugins.builtin.switchers.agent_switcher")
         require("cleanvim.plugins.builtin.toggle.transparency")
         require("cleanvim.plugins.builtin.toggle.formatter")
         require("cleanvim.plugins.builtin.toggle.terminal")
+        require("cleanvim.plugins.builtin.toggle.agent")
         require("cleanvim.plugins.builtin.toggle.spelling")
         require("cleanvim.plugins.builtin.toggle.languages")
     end,

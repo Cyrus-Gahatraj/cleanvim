@@ -216,6 +216,20 @@ Toggle languages on and off with **\<leader\>tl**. Turning one on installs its
 tools; turning it off removes the ones no other enabled language uses. Add a new
 language by dropping a file in that folder (**\<leader\>al** opens it).
 
+### Agentic coding
+
+A coding agent CLI (`claude` by default) runs in its own floating terminal.
+
+| Key / command      | Action                                             |
+| ------------------ | -------------------------------------------------- |
+| `<leader>ta`       | Toggle the agent (visual mode: send `@file#Lx-y`)  |
+| `<leader>tA`       | Send `@file` for the current buffer                |
+| `<C-q>`            | Hide the agent (`<Esc>` stays with the agent)      |
+| `<leader>sa`       | Switch agent (picker of installed CLIs, persisted) |
+| `:Agent <cmd>`     | Switch to any agent command (persisted)            |
+
+Files the agent edits reload automatically when you return to them.
+
 ### Keymaps & Options
 
 * Core keymaps: `lua/cleanvim/core/keymaps.lua`

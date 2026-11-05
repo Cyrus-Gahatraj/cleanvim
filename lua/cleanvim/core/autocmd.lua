@@ -70,3 +70,12 @@ vim.api.nvim_create_autocmd("FileType", {
         end))
     end,
 })
+
+-- Reload files changed outside Neovim (e.g. by a coding agent)
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "TermLeave", "CursorHold" }, {
+    desc = "Check for external file changes",
+    group = vim.api.nvim_create_augroup("auto-reload", { clear = true }),
+    callback = function()
+        if vim.fn.getcmdwintype() == "" then vim.cmd("checktime") end
+    end,
+})
