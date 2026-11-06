@@ -224,7 +224,9 @@ A coding agent CLI (`claude` by default) runs in its own floating terminal.
 | ------------------ | -------------------------------------------------- |
 | `<leader>ta`       | Toggle the agent (visual mode: send `@file#Lx-y`)  |
 | `<leader>tA`       | Send `@file` for the current buffer                |
-| `<C-q>`            | Hide the agent (`<Esc>` stays with the agent)      |
+| `<C-]>`            | Normal mode in the agent (`<Esc>` stays with it)   |
+| `<C-q>` / `q`      | Hide the agent (`q` in normal mode)                |
+| `<leader>ss`       | Switch agent session (running ones, or new)        |
 | `<leader>sa`       | Switch agent (picker of installed CLIs, persisted) |
 | `:Agent <cmd>`     | Switch to any agent command (persisted)            |
 
