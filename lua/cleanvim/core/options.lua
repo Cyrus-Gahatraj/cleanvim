@@ -30,3 +30,6 @@ vim.opt.shortmess:append("WcatI")
 vim.opt.showmode = false
 vim.opt.winbar = ""
 vim.opt.showtabline = 0
+
+-- sql ftplugin maps <C-c>{a,t,k,...} in insert mode, making <C-c> wait timeoutlen
+vim.g.omni_sql_no_default_maps = 1
