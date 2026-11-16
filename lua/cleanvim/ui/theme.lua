@@ -10,6 +10,9 @@ local theme_map = {
 M.colorscheme_for = function(theme_file) return theme_map[theme_file] or theme_file end
 
 M.setup = function()
+    -- Under Omarchy the desktop owns the theme, so it wins over the saved one
+    if require("cleanvim.omarchy").start() then return end
+
     local colorscheme = M.colorscheme_for(vim.g.cleanvim_theme or "catppuccin")
 
     local colors_ok, err = pcall(vim.cmd.colorscheme, colorscheme)

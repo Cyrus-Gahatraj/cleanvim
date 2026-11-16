@@ -28,6 +28,7 @@ It favors clean architecture over hidden abstraction and remains fast through la
         ├── plugins/      # Default plugin specifications
         │   └── custom/   # User plugins and overrides
         ├── ui/           # Themes, transparency, diagnostics
+        ├── omarchy.lua   # Follow the Omarchy desktop theme
         └── lazy.lua      # Plugin manager bootstrap
 ```
 
@@ -38,6 +39,7 @@ It favors clean architecture over hidden abstraction and remains fast through la
 * **`ui/`** – appearance-related configuration
 * **`plugins/custom/`** – user playground
 * **`config/state.lua`** – persisted state (stored in `stdpath("state")/cleanvim.json`)
+* **`omarchy.lua`** – reads the active theme on an Omarchy desktop
 
 ---
 
@@ -182,6 +184,8 @@ Built-in theme support with persistent selection:
 
 - *Cyberdream*
 
+- *Aether* (draws Omarchy's generic themes from the desktop palette)
+
 --- 
 
 ## Customization
@@ -244,6 +248,23 @@ Files the agent edits reload automatically when you return to them.
 * Themes live in `plugins/themes/`
 * User theme can be added with **\<leader\>at**
 * Snippets can be added with **\<leader\>as**
+
+### Omarchy
+
+On an [Omarchy](https://omarchy.org/) desktop, cleanvim follows the active
+desktop theme: switch the theme and the editor repaints with it, no restart.
+
+Omarchy renders the theme it applied into `~/.local/state/omarchy/current`.
+Cleanvim reads those files instead of keeping a copy:
+
+* `theme.name` – the theme that is active
+* `theme/neovim.lua` – names the colorscheme when the theme ships a plugin
+  cleanvim already bundles
+* `theme/colors.toml` – draws every other theme with *Aether*, so themes with no
+  matching plugin still match the desktop
+
+Turn the sync off with **\<leader\>to** to keep the theme saved inside cleanvim;
+turning it back on applies the desktop theme again.
 
 ---
 

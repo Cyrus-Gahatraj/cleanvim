@@ -7,6 +7,8 @@ local defaults = {
     theme = "catppuccin",
     transparency = true,
     format_on_save = false,
+    -- Follow the Omarchy desktop theme while running under Omarchy
+    omarchy_sync = true,
     -- CLI opened by <leader>ta; change with :Agent <cmd>
     agent = "claude",
     -- Available options: "text-and-sign", "only-text", "only-sign" and "none"
