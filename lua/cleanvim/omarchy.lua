@@ -20,9 +20,15 @@ local theme_modules = {
     ["scottmckendry/cyberdream.nvim"] = "cyberdream",
     ["bjarneo/ethereal.nvim"] = "ethereal",
     ["neanias/everforest-nvim"] = "everforest",
+    ["neanias/everforest"] = "everforest",
     ["kepano/flexoki-neovim"] = "flexoki",
     ["ellisonleao/gruvbox.nvim"] = "gruvbox",
+    ["bjarneo/hackerman.nvim"] = "hackerman",
     ["rebelot/kanagawa.nvim"] = "kanagawa",
+    ["omacom-io/lumon.nvim"] = "lumon",
+    ["tahayvr/matteblack.nvim"] = "matteblack",
+    ["OldJobobo/retro-82.nvim"] = "retro-82",
+    ["ficcdaf/ashen.nvim"] = "ashen",
     ["loctvl842/monokai-pro.nvim"] = "monokai-pro",
     ["EdenEast/nightfox.nvim"] = "nord",
     ["rose-pine/neovim"] = "rose-pine",
@@ -57,15 +63,59 @@ local function scan_spec()
     return plugin, colorscheme, colors
 end
 
--- colors.toml is a flat `key = "#rrggbb"` file, the shape aether's colors
--- option expects. Non-colour keys such as `mode` simply don't match.
+-- colors.toml key -> aether colour name, the same mapping Omarchy's own
+-- neovim.lua template uses for its generic themes.
+local aether_keys = {
+    bg = "background",
+    dark_bg = "dark_background",
+    darker_bg = "darker_background",
+    lighter_bg = "lighter_background",
+    fg = "foreground",
+    dark_fg = "dark_foreground",
+    light_fg = "light_foreground",
+    bright_fg = "bright_foreground",
+    muted = "muted",
+    red = "red",
+    yellow = "yellow",
+    orange = "orange",
+    green = "green",
+    cyan = "cyan",
+    blue = "blue",
+    magenta = "magenta",
+    brown = "brown",
+    bright_red = "bright_red",
+    bright_yellow = "bright_yellow",
+    bright_green = "bright_green",
+    bright_cyan = "bright_cyan",
+    bright_blue = "bright_blue",
+    bright_magenta = "bright_magenta",
+    accent = "accent",
+    cursor = "bright_foreground",
+    foreground = "foreground",
+    background = "background",
+    selection = "selection",
+    selection_foreground = "selection_foreground",
+    selection_background = "selection_background",
+}
+
+-- colors.toml is a flat `key = "#rrggbb"` file. Non-colour keys such as `mode`
+-- simply don't match; missing selection colours fall back like Omarchy's.
 local function palette()
     local colors_toml = read(current .. "/theme/colors.toml") or ""
-    local colors = {}
+    local toml = {}
     for key, value in colors_toml:gmatch('([%w_]+)%s*=%s*"(#%x+)"') do
-        colors[key] = value
+        toml[key] = value
     end
-    return next(colors) and colors or nil
+    if next(toml) == nil then return nil end
+
+    toml.selection_foreground = toml.selection_foreground or toml.foreground
+    toml.selection_background = toml.selection_background or toml.selection
+
+    local colors = {}
+    for name, key in pairs(aether_keys) do
+        colors[name] = toml[key]
+    end
+    return colors
 end
 
 M.name = function()

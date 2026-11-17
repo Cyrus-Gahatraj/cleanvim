@@ -71,17 +71,35 @@ end
 
 M.mason_install = function(names, on_done)
     local registry = require("mason-registry")
+    local skipped = state.load().mason_unsupported or {}
     registry.refresh(vim.schedule_wrap(function()
         for _, name in ipairs(names) do
             local ok, pkg = pcall(registry.get_package, name)
             if not ok then
                 vim.notify("Cleanvim: unknown mason package " .. name, vim.log.levels.WARN)
-            elseif not pkg:is_installed() and not pkg:is_installing() then
+            elseif
+                not pkg:is_installed()
+                and not pkg:is_installing()
+                and not skipped[name]
+                and vim.fn.executable(name) == 0
+            then
                 vim.notify("Cleanvim: installing " .. name)
                 pkg:install(
                     {},
-                    vim.schedule_wrap(function(success)
-                        if not success then
+                    vim.schedule_wrap(function(success, err)
+                        if not success and tostring(err):find("platform is unsupported") then
+                            -- Mason has no build for this machine (e.g. selene on
+                            -- aarch64); stop retrying on every start
+                            local skip = state.load().mason_unsupported or {}
+                            skip[name] = true
+                            state.set("mason_unsupported", skip)
+                            return vim.notify(
+                                "Cleanvim: Mason has no "
+                                    .. name
+                                    .. " build for this platform; install it with your system package manager",
+                                vim.log.levels.WARN
+                            )
+                        elseif not success then
                             return vim.notify(
                                 "Cleanvim: failed to install " .. name,
                                 vim.log.levels.ERROR

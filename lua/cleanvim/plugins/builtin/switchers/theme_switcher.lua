@@ -17,12 +17,12 @@ local apply_theme = function()
         local colorscheme = require("cleanvim.ui.theme").colorscheme_for(theme_file)
 
         vim.g.cleanvim_theme = colorscheme
-        local ok, err = pcall(vim.cmd, "colorscheme " .. colorscheme)
+        local ok, err = pcall(vim.cmd.colorscheme, colorscheme)
         if ok and opts.save then
             saved = true
             require("cleanvim.config.state").set("theme", colorscheme)
         elseif not ok then
-            pcall(vim.cmd, "colorscheme " .. current_theme)
+            pcall(vim.cmd.colorscheme, current_theme)
             print("Error applying " .. colorscheme .. ": " .. (err or "unknown"))
         end
     end
@@ -46,6 +46,7 @@ local apply_theme = function()
             map({ "i", "n" }, "<DOWN>", next_color)
 
             -- cancelling keeps the theme you started with, not the last preview
+            ---@diagnostic disable-next-line: undefined-field
             actions.close:enhance({
                 post = function()
                     if saved then return end

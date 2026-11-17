@@ -29,7 +29,7 @@ local function apply_transparent()
         -- keep fg/bold/etc., only drop the background
         local hl = vim.api.nvim_get_hl(0, { name = name, link = false })
         hl.bg, hl.ctermbg = nil, nil
-        vim.api.nvim_set_hl(0, name, hl)
+        vim.api.nvim_set_hl(0, name, hl --[[@as vim.api.keyset.highlight]])
     end
 end
 

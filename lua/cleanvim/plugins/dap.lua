@@ -38,6 +38,10 @@ return {
     },
     config = function()
         require("dap-view").setup({ auto_toggle = true })
-        require("mason-nvim-dap").setup({ handlers = {} })
+        require("mason-nvim-dap").setup({
+            ensure_installed = {},
+            automatic_installation = false,
+            handlers = {},
+        })
     end,
 }

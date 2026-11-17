@@ -184,6 +184,16 @@ Built-in theme support with persistent selection:
 
 - *Cyberdream*
 
+- *Hackerman*
+
+- *Lumon*
+
+- *Matte Black*
+
+- *Retro 82*
+
+- *Ashen*
+
 - *Aether* (draws Omarchy's generic themes from the desktop palette)
 
 --- 

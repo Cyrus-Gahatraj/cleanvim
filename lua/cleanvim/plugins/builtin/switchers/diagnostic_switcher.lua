@@ -7,7 +7,7 @@ local apply_diagnostic = function(opts)
     local actions = require("telescope.actions")
     local action_state = require("telescope.actions.state")
     pickers
-        .new({
+        .new(opts or {}, {
             finder = finders.new_table({
                 results = { "text-and-sign", "only-text", "only-sign", "none" },
             }),

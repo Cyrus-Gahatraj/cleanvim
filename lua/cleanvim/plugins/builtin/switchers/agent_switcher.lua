@@ -10,7 +10,7 @@ local apply_agent = function(opts)
     local actions = require("telescope.actions")
     local action_state = require("telescope.actions.state")
     pickers
-        .new({
+        .new(opts or {}, {
             prompt_title = "Agent (current: " .. vim.g.cleanvim_agent .. ")",
             finder = finders.new_table({
                 results = vim.tbl_filter(function(a) return vim.fn.executable(a) == 1 end, agents),
